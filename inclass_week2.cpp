@@ -39,7 +39,7 @@ cout << "Last maximum value: " << *max_element_it << " at position: " << distanc
 int factor = 10;
 
 // 7 items
-vector<int> vec2 = {0,0,0,0,0,0,0,0,0,0,0,0}; // 11 items
+vector<int> vec2(vec.size()); // 11 items
 vector<int>::iterator itr, itr2;
 
 transform(vec.begin(), vec.end(),
@@ -50,11 +50,11 @@ std::cout << std::endl;
 
 
 // 5) Calculate elementwise product and save in r e s u l t and cout r e s u l t
-vector<int> result;
+// vector<int> result;
 
-ranges::transform(vec2,vec2, back_inserter(result),[](auto x, auto y){return x*y;})
-ranges::copy(vec,ostream_iterator<int>{cout, " "})
-cout << endl
+// transform(vec2.begin(),vec2.end(), back_inserter(result),[](auto x, auto y){return x*y;});
+// copy(vec2.begin(), vec2.end(),ostream_iterator<int>{std::cout, " "});
+// cout << endl;
 
 
 
@@ -67,24 +67,26 @@ std::cout << std::endl;
 // 7) Remove a l l 0 ’ s from vec and cout
 //remove moves 0 to end, to new logical end. just restructers vector
 
-vec.erase(remove(vec2.begin(), vec2.end(), 0),vec.end());
-copy(vec2, std::ostream_iterator<int>(cout, " "));
+vec2.erase(remove(vec2.begin(), vec2.end(), 0),vec2.end());
+copy(vec2.begin(), vec2.end(), std::ostream_iterator<int>(cout, " "));
 cout << endl;
 
 // 8) Rotate such that vector s t a r t s with max value 450 and cout
-rotate(vec2.begin(), vec2.begin()+4, vec.end());
+rotate(vec2.begin(), vec2.begin()+4, vec2.end());
+copy(vec2.begin(), vec2.end(), std::ostream_iterator<int>(cout, " "));
+cout << endl;
 
 //by patrick
-auto itr450{ranges::find(vec2,450)};
-ranges::rotate(vec2, itr450);
-copy(vec2, std::ostream_iterator<int>(cout, " "));
-cout << endl;
+// auto itr450{find(vec2.begin(), vec2.end(),450)};
+// rotate(vec2.begin(), vec2.end(), itr450);
+// copy(vec2.begin(), vec2.end(), std::ostream_iterator<int>(cout, " "));
+// cout << endl;//
 
 // 9) P a r t i t i o n elements such that values l e s s than 450 appear f i r s t preseving the o r i g i n a l
 //order and cout
 
-ranges::stable_partition(vec2,[](auto e){return e<450;});
-copy(vec2, std::ostream_iterator<int>(cout, " "));
+stable_partition(vec2.begin(), vec2.end(),[](auto e){return e<450;});
+copy(vec2.begin(), vec2.end(), std::ostream_iterator<int>(cout, " "));
 cout << endl;
 
 return 0;
