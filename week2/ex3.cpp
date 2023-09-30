@@ -42,25 +42,25 @@ public:
 
 int main(){
 
-    std::ifstream stream("Forbes2018.txt");
-    if(!stream){
-        cout << "WARNING: File not found!" << endl;
-    }
+    // std::ifstream stream("Forbes2018.txt");
+    // if(!stream){
+    //     cout << "WARNING: File not found!" << endl;
+    // }
     
-    vector<Billionaire> billionaires;
-    copy(istream_iterator<Billionaire>(stream), istream_iterator<Billionaire>(), back_inserter(billionaires));
-    copy(billionaires.begin(), billionaires.end(), ostream_iterator<Billionaire>(cout, "\n"));
+    // vector<Billionaire> billionaires;
+    // copy(istream_iterator<Billionaire>(stream), istream_iterator<Billionaire>(), back_inserter(billionaires));
+    // copy(billionaires.begin(), billionaires.end(), ostream_iterator<Billionaire>(cout, "\n"));
 
     // Create a map to store billionaires and their counts
     std::map<std::string, std::pair<Billionaire, size_t>> countryToBillionaire;
 
-    // Sample data: billionaires vector
-    // std::vector<Billionaire> billionaires = {
-    //     Billionaire("Mikhail Fridman", 15.1, "Russia"),
-    //     Billionaire("Rupert Murdoch", 15, "United States"),
-    //     Billionaire("Dhanin Chearavanont", 14.9, "Thailand"),
-    //     // Add more billionaires from various countries
-    // };
+    // Sample data: billionaires vector as streamoverloading is not working
+    std::vector<Billionaire> billionaires = {
+        Billionaire("Mikhail Fridman", 15.1, "Russia"),
+        Billionaire("Rupert Murdoch", 15, "United States"),
+        Billionaire("Dhanin Chearavanont", 14.9, "Thailand"),
+        // Add more billionaires from various countries
+    };
 
     // Populate the map with the first billionaire from each country
     for (const Billionaire& billionaire : billionaires) {
