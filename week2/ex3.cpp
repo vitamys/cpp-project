@@ -9,82 +9,47 @@ the file into a vector and write the content to the output as shown in the code 
 #include <algorithm>
 #include <iterator>
 #include <map>
-//#include "Billionaire.h"
+#include "Billionaire.h"
 
 using namespace std;
-
-class Billionaire {
-public:
-    // Constructors
-    Billionaire() = default;
-    Billionaire(const std::string& name, double dollars, const std::string& country)
-        : name(name), dollars(dollars), country(country) {}
-
-    // Overload the output stream operator (<<) to display a billionaire
-    friend std::ostream& operator<<(std::ostream& os, const Billionaire& billionaire) {
-        os << "Name: " << billionaire.name << "\tDollars: " << billionaire.dollars << "B\tCountry: " << billionaire.country;
-        return os;
-    }
-
-    // Overload the input stream operator (>>) to read a billionaire from input
-    friend std::istream& operator>>(std::istream& is, Billionaire& billionaire) {
-        // Read data from the input stream, assuming it is in the format: name, dollars, country
-        is >> billionaire.name >> billionaire.dollars >> billionaire.country;
-        return is;
-    }
-
-
-    std::string name;
-    double dollars;
-    std::string country;
-};
 
 
 int main(){
 
-    // std::ifstream stream("Forbes2018.txt");
-    // if(!stream){
-    //     cout << "WARNING: File not found!" << endl;
-    // }
+    std::ifstream stream("Forbes2018.txt");
+    if(!stream){
+        cout << "WARNING: File not found!" << endl;
+    }
     
-    // vector<Billionaire> billionaires;
-    // copy(istream_iterator<Billionaire>(stream), istream_iterator<Billionaire>(), back_inserter(billionaires));
-    // copy(billionaires.begin(), billionaires.end(), ostream_iterator<Billionaire>(cout, "\n"));
+    vector<Billionaire> billionaires;
+    copy(istream_iterator<Billionaire>(stream), istream_iterator<Billionaire>(), back_inserter(billionaires));
+    //uncomment to have whole list of billionaires printed to terminal
+    //copy(billionaires.begin(), billionaires.end(), ostream_iterator<Billionaire>(cout, "\n"));
 
     // Create a map to store billionaires and their counts
     std::map<std::string, std::pair<Billionaire, size_t>> countryToBillionaire;
 
-    // Sample data: billionaires vector as streamoverloading is not working
-    std::vector<Billionaire> billionaires = {
-        Billionaire("Mikhail Fridman", 15.1, "Russia"),
-        Billionaire("Rupert Murdoch", 15, "United States"),
-        Billionaire("Dhanin Chearavanont", 14.9, "Thailand"),
-        // Add more billionaires from various countries
-    };
+    
 
-    // Populate the map with the first billionaire from each country
     for (const Billionaire& billionaire : billionaires) {
-        // Check if the country already exists in the map
-        if (countryToBillionaire.find(billionaire.country) == countryToBillionaire.end()) {
-            // If the country is not in the map, add the billionaire and set the count to 1
-            countryToBillionaire[billionaire.country] = std::make_pair(billionaire, 1);
-        } else {
-            // If the country is already in the map, increment the count
-            countryToBillionaire[billionaire.country].second++;
+        auto result = countryToBillionaire.try_emplace(billionaire.country, billionaire, 1);
+        if (!result.second) {
+            // Country already exists in the map, update the count
+            result.first->second.second++;
+            if (billionaire.dollars > result.first->second.first.dollars) {
+                // If this billionaire is richer, update the richest billionaire
+                result.first->second.first = billionaire;
+            }
         }
     }
 
-    // Print the map contents
     for (const auto& pair : countryToBillionaire) {
         const std::string& country = pair.first;
-        const Billionaire& firstBillionaire = pair.second.first;
+        const Billionaire& richestBillionaire = pair.second.first;
         size_t billionaireCount = pair.second.second;
 
-        std::cout << "Country: " << country << std::endl;
-        std::cout << "First Billionaire: " << firstBillionaire << std::endl;
-        std::cout << "Number of Billionaires: " << billionaireCount << std::endl;
-        std::cout << std::endl;
+        std::cout << country << " : " << billionaireCount << " billionaires. Richest is " << richestBillionaire.name
+                  << " with " << richestBillionaire.dollars << " B$" << std::endl;
     }
-
     return 0;
 }

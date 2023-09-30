@@ -7,6 +7,10 @@
 
  class Billionaire {
 public:
+//Data members
+std::string name;
+    double dollars;
+    std::string country;
     // Constructors
     Billionaire() = default;
     Billionaire(const std::string& name, double dollars, const std::string& country)
@@ -19,15 +23,17 @@ public:
     }
 
     // Overload the input stream operator (>>) to read a billionaire from input
+    //! there is a whitespace after the double so we need to ignore it
     friend std::istream& operator>>(std::istream& is, Billionaire& billionaire) {
-        // Read data from the input stream, assuming it is in the format: name, dollars, country
-        is >> billionaire.name >> billionaire.dollars >> billionaire.country;
-        return is;
-    }
-    private:
-    std::string name;
-    double dollars;
-    std::string country;
+    // Read data from the input stream, assuming it is in the format: name, dollars, country
+    is >> std::ws; // Skip leading whitespace
+    getline(is, billionaire.name, '\t'); // Read the name until the next tab
+    is >> billionaire.dollars; // Read the dollars as a double
+    is.ignore(); // Ignore the space after the double
+    getline(is, billionaire.country); // Read the country until the end of the line
+    return is;
+}
+    
  };
 
 #endif // BILLIONAIRE_H
