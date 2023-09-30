@@ -1,8 +1,3 @@
-/*
-Read the file containing the name, dollars in billions and the country which are separated by tabs.
-Create a class Billionaire and overload the ostream and istream operators to conveniently read
-the file into a vector and write the content to the output as shown in the code snippet.
-*/
 #include <iostream>
 #include <fstream>
 #include <vector>
