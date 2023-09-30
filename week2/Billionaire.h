@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-class Billionaire {
+ class Billionaire {
 public:
     // Constructors
     Billionaire() = default;
@@ -24,11 +24,10 @@ public:
         is >> billionaire.name >> billionaire.dollars >> billionaire.country;
         return is;
     }
-
-private:
+    private:
     std::string name;
     double dollars;
     std::string country;
-};
+ };
 
 #endif // BILLIONAIRE_H
