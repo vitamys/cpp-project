@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/week3_v2.dir/main.cpp.o CMakeFiles/week3_v2.dir/widget.cpp.o -o week3_v2 
