@@ -69,10 +69,24 @@ include CMakeFiles/week3.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/week3.dir/flags.make
 
+CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.o: CMakeFiles/week3.dir/flags.make
+CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.o: week3_autogen/mocs_compilation.cpp
+CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.o: CMakeFiles/week3.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lerfme/Documents/cpp/test3/build-week3-Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.o -MF CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.o -c /home/lerfme/Documents/cpp/test3/build-week3-Desktop-Debug/week3_autogen/mocs_compilation.cpp
+
+CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lerfme/Documents/cpp/test3/build-week3-Desktop-Debug/week3_autogen/mocs_compilation.cpp > CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.i
+
+CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lerfme/Documents/cpp/test3/build-week3-Desktop-Debug/week3_autogen/mocs_compilation.cpp -o CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.s
+
 CMakeFiles/week3.dir/main.cpp.o: CMakeFiles/week3.dir/flags.make
 CMakeFiles/week3.dir/main.cpp.o: /home/lerfme/Documents/cpp/test3/week3/main.cpp
 CMakeFiles/week3.dir/main.cpp.o: CMakeFiles/week3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lerfme/Documents/cpp/test3/build-week3-Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/week3.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lerfme/Documents/cpp/test3/build-week3-Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/week3.dir/main.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/week3.dir/main.cpp.o -MF CMakeFiles/week3.dir/main.cpp.o.d -o CMakeFiles/week3.dir/main.cpp.o -c /home/lerfme/Documents/cpp/test3/week3/main.cpp
 
 CMakeFiles/week3.dir/main.cpp.i: cmake_force
@@ -83,17 +97,55 @@ CMakeFiles/week3.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/week3.dir/main.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lerfme/Documents/cpp/test3/week3/main.cpp -o CMakeFiles/week3.dir/main.cpp.s
 
+CMakeFiles/week3.dir/src/ui/widget.cpp.o: CMakeFiles/week3.dir/flags.make
+CMakeFiles/week3.dir/src/ui/widget.cpp.o: /home/lerfme/Documents/cpp/test3/week3/src/ui/widget.cpp
+CMakeFiles/week3.dir/src/ui/widget.cpp.o: CMakeFiles/week3.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lerfme/Documents/cpp/test3/build-week3-Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/week3.dir/src/ui/widget.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/week3.dir/src/ui/widget.cpp.o -MF CMakeFiles/week3.dir/src/ui/widget.cpp.o.d -o CMakeFiles/week3.dir/src/ui/widget.cpp.o -c /home/lerfme/Documents/cpp/test3/week3/src/ui/widget.cpp
+
+CMakeFiles/week3.dir/src/ui/widget.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/week3.dir/src/ui/widget.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lerfme/Documents/cpp/test3/week3/src/ui/widget.cpp > CMakeFiles/week3.dir/src/ui/widget.cpp.i
+
+CMakeFiles/week3.dir/src/ui/widget.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/week3.dir/src/ui/widget.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lerfme/Documents/cpp/test3/week3/src/ui/widget.cpp -o CMakeFiles/week3.dir/src/ui/widget.cpp.s
+
+CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.o: CMakeFiles/week3.dir/flags.make
+CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.o: /home/lerfme/Documents/cpp/test3/week3/src/ui/qcustomplot-source/qcustomplot.cpp
+CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.o: CMakeFiles/week3.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lerfme/Documents/cpp/test3/build-week3-Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.o -MF CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.o.d -o CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.o -c /home/lerfme/Documents/cpp/test3/week3/src/ui/qcustomplot-source/qcustomplot.cpp
+
+CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lerfme/Documents/cpp/test3/week3/src/ui/qcustomplot-source/qcustomplot.cpp > CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.i
+
+CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lerfme/Documents/cpp/test3/week3/src/ui/qcustomplot-source/qcustomplot.cpp -o CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.s
+
 # Object files for target week3
 week3_OBJECTS = \
-"CMakeFiles/week3.dir/main.cpp.o"
+"CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.o" \
+"CMakeFiles/week3.dir/main.cpp.o" \
+"CMakeFiles/week3.dir/src/ui/widget.cpp.o" \
+"CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.o"
 
 # External object files for target week3
 week3_EXTERNAL_OBJECTS =
 
+week3: CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.o
 week3: CMakeFiles/week3.dir/main.cpp.o
+week3: CMakeFiles/week3.dir/src/ui/widget.cpp.o
+week3: CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.o
 week3: CMakeFiles/week3.dir/build.make
+week3: /usr/lib/x86_64-linux-gnu/libQt5PrintSupport.so.5.15.3
+week3: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3
+week3: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3
+week3: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3
 week3: CMakeFiles/week3.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lerfme/Documents/cpp/test3/build-week3-Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable week3"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lerfme/Documents/cpp/test3/build-week3-Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable week3"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/week3.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

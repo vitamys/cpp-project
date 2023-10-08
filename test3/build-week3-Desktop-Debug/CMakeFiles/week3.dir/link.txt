@@ -1,1 +1,1 @@
-/usr/bin/g++ -g CMakeFiles/week3.dir/main.cpp.o -o week3 
+/usr/bin/g++ -g -rdynamic CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.o CMakeFiles/week3.dir/main.cpp.o CMakeFiles/week3.dir/src/ui/widget.cpp.o CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.o -o week3  /usr/lib/x86_64-linux-gnu/libQt5PrintSupport.so.5.15.3 /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3 /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3 /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3 

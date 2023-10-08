@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.0)
 
 # Set Name of project and language
-project(week3_v2 LANGUAGES CXX)
+project(week3 LANGUAGES CXX)
 
 # Declare and find qt library
 find_package(Qt5 COMPONENTS Widgets PrintSupport REQUIRED)

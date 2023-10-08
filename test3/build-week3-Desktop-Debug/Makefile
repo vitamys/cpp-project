@@ -117,37 +117,37 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named week3_v2
+# Target rules for targets named week3
 
 # Build rule for target.
-week3_v2: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 week3_v2
-.PHONY : week3_v2
+week3: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 week3
+.PHONY : week3
 
 # fast build rule for target.
-week3_v2/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3_v2.dir/build.make CMakeFiles/week3_v2.dir/build
-.PHONY : week3_v2/fast
+week3/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3.dir/build.make CMakeFiles/week3.dir/build
+.PHONY : week3/fast
 
 #=============================================================================
-# Target rules for targets named week3_v2_autogen
+# Target rules for targets named week3_autogen
 
 # Build rule for target.
-week3_v2_autogen: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 week3_v2_autogen
-.PHONY : week3_v2_autogen
+week3_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 week3_autogen
+.PHONY : week3_autogen
 
 # fast build rule for target.
-week3_v2_autogen/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3_v2_autogen.dir/build.make CMakeFiles/week3_v2_autogen.dir/build
-.PHONY : week3_v2_autogen/fast
+week3_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3_autogen.dir/build.make CMakeFiles/week3_autogen.dir/build
+.PHONY : week3_autogen/fast
 
 main.o: main.cpp.o
 .PHONY : main.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3_v2.dir/build.make CMakeFiles/week3_v2.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3.dir/build.make CMakeFiles/week3.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -155,7 +155,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3_v2.dir/build.make CMakeFiles/week3_v2.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3.dir/build.make CMakeFiles/week3.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -163,7 +163,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3_v2.dir/build.make CMakeFiles/week3_v2.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3.dir/build.make CMakeFiles/week3.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 src/ui/qcustomplot-source/qcustomplot.o: src/ui/qcustomplot-source/qcustomplot.cpp.o
@@ -171,7 +171,7 @@ src/ui/qcustomplot-source/qcustomplot.o: src/ui/qcustomplot-source/qcustomplot.c
 
 # target to build an object file
 src/ui/qcustomplot-source/qcustomplot.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3_v2.dir/build.make CMakeFiles/week3_v2.dir/src/ui/qcustomplot-source/qcustomplot.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3.dir/build.make CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.o
 .PHONY : src/ui/qcustomplot-source/qcustomplot.cpp.o
 
 src/ui/qcustomplot-source/qcustomplot.i: src/ui/qcustomplot-source/qcustomplot.cpp.i
@@ -179,7 +179,7 @@ src/ui/qcustomplot-source/qcustomplot.i: src/ui/qcustomplot-source/qcustomplot.c
 
 # target to preprocess a source file
 src/ui/qcustomplot-source/qcustomplot.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3_v2.dir/build.make CMakeFiles/week3_v2.dir/src/ui/qcustomplot-source/qcustomplot.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3.dir/build.make CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.i
 .PHONY : src/ui/qcustomplot-source/qcustomplot.cpp.i
 
 src/ui/qcustomplot-source/qcustomplot.s: src/ui/qcustomplot-source/qcustomplot.cpp.s
@@ -187,7 +187,7 @@ src/ui/qcustomplot-source/qcustomplot.s: src/ui/qcustomplot-source/qcustomplot.c
 
 # target to generate assembly for a file
 src/ui/qcustomplot-source/qcustomplot.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3_v2.dir/build.make CMakeFiles/week3_v2.dir/src/ui/qcustomplot-source/qcustomplot.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3.dir/build.make CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.s
 .PHONY : src/ui/qcustomplot-source/qcustomplot.cpp.s
 
 src/ui/widget.o: src/ui/widget.cpp.o
@@ -195,7 +195,7 @@ src/ui/widget.o: src/ui/widget.cpp.o
 
 # target to build an object file
 src/ui/widget.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3_v2.dir/build.make CMakeFiles/week3_v2.dir/src/ui/widget.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3.dir/build.make CMakeFiles/week3.dir/src/ui/widget.cpp.o
 .PHONY : src/ui/widget.cpp.o
 
 src/ui/widget.i: src/ui/widget.cpp.i
@@ -203,7 +203,7 @@ src/ui/widget.i: src/ui/widget.cpp.i
 
 # target to preprocess a source file
 src/ui/widget.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3_v2.dir/build.make CMakeFiles/week3_v2.dir/src/ui/widget.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3.dir/build.make CMakeFiles/week3.dir/src/ui/widget.cpp.i
 .PHONY : src/ui/widget.cpp.i
 
 src/ui/widget.s: src/ui/widget.cpp.s
@@ -211,32 +211,32 @@ src/ui/widget.s: src/ui/widget.cpp.s
 
 # target to generate assembly for a file
 src/ui/widget.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3_v2.dir/build.make CMakeFiles/week3_v2.dir/src/ui/widget.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3.dir/build.make CMakeFiles/week3.dir/src/ui/widget.cpp.s
 .PHONY : src/ui/widget.cpp.s
 
-week3_v2_autogen/mocs_compilation.o: week3_v2_autogen/mocs_compilation.cpp.o
-.PHONY : week3_v2_autogen/mocs_compilation.o
+week3_autogen/mocs_compilation.o: week3_autogen/mocs_compilation.cpp.o
+.PHONY : week3_autogen/mocs_compilation.o
 
 # target to build an object file
-week3_v2_autogen/mocs_compilation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3_v2.dir/build.make CMakeFiles/week3_v2.dir/week3_v2_autogen/mocs_compilation.cpp.o
-.PHONY : week3_v2_autogen/mocs_compilation.cpp.o
+week3_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3.dir/build.make CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.o
+.PHONY : week3_autogen/mocs_compilation.cpp.o
 
-week3_v2_autogen/mocs_compilation.i: week3_v2_autogen/mocs_compilation.cpp.i
-.PHONY : week3_v2_autogen/mocs_compilation.i
+week3_autogen/mocs_compilation.i: week3_autogen/mocs_compilation.cpp.i
+.PHONY : week3_autogen/mocs_compilation.i
 
 # target to preprocess a source file
-week3_v2_autogen/mocs_compilation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3_v2.dir/build.make CMakeFiles/week3_v2.dir/week3_v2_autogen/mocs_compilation.cpp.i
-.PHONY : week3_v2_autogen/mocs_compilation.cpp.i
+week3_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3.dir/build.make CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.i
+.PHONY : week3_autogen/mocs_compilation.cpp.i
 
-week3_v2_autogen/mocs_compilation.s: week3_v2_autogen/mocs_compilation.cpp.s
-.PHONY : week3_v2_autogen/mocs_compilation.s
+week3_autogen/mocs_compilation.s: week3_autogen/mocs_compilation.cpp.s
+.PHONY : week3_autogen/mocs_compilation.s
 
 # target to generate assembly for a file
-week3_v2_autogen/mocs_compilation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3_v2.dir/build.make CMakeFiles/week3_v2.dir/week3_v2_autogen/mocs_compilation.cpp.s
-.PHONY : week3_v2_autogen/mocs_compilation.cpp.s
+week3_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week3.dir/build.make CMakeFiles/week3.dir/week3_autogen/mocs_compilation.cpp.s
+.PHONY : week3_autogen/mocs_compilation.cpp.s
 
 # Help Target
 help:
@@ -246,8 +246,8 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... week3_v2_autogen"
-	@echo "... week3_v2"
+	@echo "... week3_autogen"
+	@echo "... week3"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
@@ -257,9 +257,9 @@ help:
 	@echo "... src/ui/widget.o"
 	@echo "... src/ui/widget.i"
 	@echo "... src/ui/widget.s"
-	@echo "... week3_v2_autogen/mocs_compilation.o"
-	@echo "... week3_v2_autogen/mocs_compilation.i"
-	@echo "... week3_v2_autogen/mocs_compilation.s"
+	@echo "... week3_autogen/mocs_compilation.o"
+	@echo "... week3_autogen/mocs_compilation.i"
+	@echo "... week3_autogen/mocs_compilation.s"
 .PHONY : help
 
 

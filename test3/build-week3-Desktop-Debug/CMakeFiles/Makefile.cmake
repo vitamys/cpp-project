@@ -78,12 +78,12 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
-  "CMakeFiles/week3_v2_autogen.dir/AutogenInfo.json"
+  "CMakeFiles/week3_autogen.dir/AutogenInfo.json"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/week3_v2.dir/DependInfo.cmake"
-  "CMakeFiles/week3_v2_autogen.dir/DependInfo.cmake"
+  "CMakeFiles/week3.dir/DependInfo.cmake"
+  "CMakeFiles/week3_autogen.dir/DependInfo.cmake"
   )

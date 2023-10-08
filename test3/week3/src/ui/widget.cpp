@@ -12,8 +12,8 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(plotData()));
-    connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(plotECG()));
+    connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(plotData()));
+    //connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(plotECG()));
 
 }
 
@@ -72,8 +72,7 @@ void Widget::plotData()
     Y.begin(),
     [](double x){return x*x;});
     // Plot data
-    ui->widget->graph(0)->setData(QVector<double>(X.begin(),X.end()),
-    QVector<double>(Y.begin(),Y.end()));
+    ui->widget->graph(0)->setData(QVector<double>::fromStdVector(X), QVector<double>::fromStdVector(Y));
     //
     ui->widget->rescaleAxes();
     ui->widget->replot();
