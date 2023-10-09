@@ -1,6 +1,7 @@
 #include <iostream>
 #include <QApplication>
 #include "widget.h"
+#include <math.h>
 
 using namespace std;
 

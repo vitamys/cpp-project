@@ -17,6 +17,7 @@ set(CMAKE_AUTOUIC ON)
 # set build type to Debug/Release
 set(CMAKE_BUILD_TYPE "Debug")
 
+
 # Create executable using the specified src
 add_executable(${PROJECT_NAME} main.cpp src/ui/widget.h src/ui/widget.cpp src/ui/widget.ui
     src/ui/qcustomplot-source/qcustomplot.cpp

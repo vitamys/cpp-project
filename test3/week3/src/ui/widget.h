@@ -22,6 +22,7 @@ public slots:
 
 private:
     Ui::Widget *ui;
+    double samplingRate = 360.0;
 };
 
 #endif // WIDGET_H
