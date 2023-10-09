@@ -12,14 +12,67 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(plotData()));
-    //connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(plotECG()));
-
+    //connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(plotData()));
+    connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(plotECG()));
+    //connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(plotMarta()));
 }
 
 Widget::~Widget()
 {
     delete ui;
+}
+
+void Widget::plotMarta(){
+    QFile file("../ekg.txt");
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+            qDebug() << "Failed to open EEG data file.";
+            return;
+        }
+
+        // Create vectors to store X and Y values
+        std::vector<double> X;
+        std::vector<double> Y;
+
+        // Read the entire line from the file
+        QString line = file.readLine();
+
+        // Close the file
+        file.close();
+
+        // Split the line into individual values
+        QStringList values = line.split(" ", QString::SkipEmptyParts);
+
+        // Convert and store values in the Y vector
+        for (const QString& value : values)
+        {
+            double num = value.toDouble();
+            Y.push_back(num);
+            X.push_back(X.size());
+        }
+
+        if (X.empty() || Y.empty())
+            {
+                qDebug() << "X and/or Y vectors are empty. Cannot plot empty data.";
+                return;
+            }
+
+
+        // Add a graph and set properties
+        connect(ui->widget,SIGNAL(mouseDoubleClick(QMouseEvent*)),
+        ui->widget, SLOT(rescaleAxes()) );
+        ui->widget->addGraph();
+        ui->widget->xAxis->setLabel("Time");
+        ui->widget->yAxis->setLabel("EKG Value");
+        ui->widget->xAxis->grid()->setSubGridVisible(true);
+
+        // Plot data
+        ui->widget->graph(0)->setData(QVector<double>::fromStdVector(X),
+                                      QVector<double>::fromStdVector(Y));
+
+        // Rescale and replot
+        ui->widget->rescaleAxes();
+        ui->widget->replot();
 }
 
 void Widget::plotECG()
@@ -33,23 +86,49 @@ void Widget::plotECG()
     ui->widget->xAxis->grid()->setSubGridVisible(true);
 
     //read data from txt file
-    std::ifstream stream("ecg.txt");
+
+    std::ifstream stream("../ekg.txt");
+    assert(stream.is_open());
        if(!stream){
            cout << "WARNING: File not found!" << endl;
+           return;
        }
 
+
+
+
+
     std::istream_iterator<double> start(stream), end;
-    std::vector<double> X(start,end);
-    std::vector<double> Y(X.size());
+    std::vector<double> Y(start,end);
+    // Check if any data was read
+        if (Y.empty())
+        {
+            cout << "ERROR: No data found in the file!" << endl;
+            return;
+        }
+
+
+
+
+    // Create X values based on the sampling rate (360 Hz)
+    vector<double> X(Y.size());
+    for (int i = 0; i < X.size(); ++i)
+    {
+       X[i] = static_cast<double>(i) / 360.0; // Time in seconds
+       }
+
 
     // Plot data
-    ui->widget->graph(0)->setData(QVector<double>(X.begin(),X.end()),
-    QVector<double>(Y.begin(),Y.end()));
-    //
+    ui->widget->graph(0)->setData(QVector<double>::fromStdVector(X), QVector<double>::fromStdVector(Y));
+    // Rescale axes and replot
     ui->widget->rescaleAxes();
     ui->widget->replot();
 
 
+}
+
+double avgHeartRate(){
+    return 0.0;
 }
 
 void Widget::plotData()

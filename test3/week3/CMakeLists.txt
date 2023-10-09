@@ -38,6 +38,7 @@ target_compile_options(${PROJECT_NAME} PRIVATE
 )
 
 
-
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/ekg.txt
+    DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/ekg.txt)
 
 
