@@ -1,2 +1,6 @@
 # Hashes of file build rules.
 e7f3c72a2c20e727a24dfc1b18a5e9f1 CMakeFiles/week3_autogen
+c6fcc769481a282c3bccb52bcbaea5fc Cpp_Ecg_Detectors-prefix/src/Cpp_Ecg_Detectors-stamp/Cpp_Ecg_Detectors-configure
+6c050994afbb1422aff010a79dedf545 Cpp_Ecg_Detectors-prefix/src/Cpp_Ecg_Detectors-stamp/Cpp_Ecg_Detectors-download
+209fd76168ad3498b84e19ef2a7787d2 Cpp_Ecg_Detectors-prefix/src/Cpp_Ecg_Detectors-stamp/Cpp_Ecg_Detectors-mkdir
+82c74449bc8f79f6b084ce9b3288397b Cpp_Ecg_Detectors-prefix/src/Cpp_Ecg_Detectors-stamp/Cpp_Ecg_Detectors-patch

@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/week2.dir/main.cpp.o CMakeFiles/week2.dir/src/billionaire.cpp.o -o week2 

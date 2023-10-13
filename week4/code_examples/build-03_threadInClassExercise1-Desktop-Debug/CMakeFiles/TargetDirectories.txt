@@ -1,0 +1,3 @@
+/home/lerfme/Documents/cpp/week4/code_examples/build-03_threadInClassExercise1-Desktop-Debug/CMakeFiles/InClassThread.dir
+/home/lerfme/Documents/cpp/week4/code_examples/build-03_threadInClassExercise1-Desktop-Debug/CMakeFiles/edit_cache.dir
+/home/lerfme/Documents/cpp/week4/code_examples/build-03_threadInClassExercise1-Desktop-Debug/CMakeFiles/rebuild_cache.dir

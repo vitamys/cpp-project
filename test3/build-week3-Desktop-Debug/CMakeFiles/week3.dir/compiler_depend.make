@@ -350,7 +350,32 @@ CMakeFiles/week3.dir/main.cpp.o: /home/lerfme/Documents/cpp/test3/week3/main.cpp
   /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontmetrics.h \
   /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontinfo.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qsizepolicy.h \
-  /usr/include/x86_64-linux-gnu/qt5/QtGui/qkeysequence.h
+  /usr/include/x86_64-linux-gnu/qt5/QtGui/qkeysequence.h \
+  /usr/include/c++/11/math.h \
+  /usr/include/c++/11/cmath \
+  /usr/include/math.h \
+  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
+  /usr/include/c++/11/bits/specfun.h \
+  /usr/include/c++/11/tr1/gamma.tcc \
+  /usr/include/c++/11/tr1/special_function_util.h \
+  /usr/include/c++/11/tr1/bessel_function.tcc \
+  /usr/include/c++/11/tr1/beta_function.tcc \
+  /usr/include/c++/11/tr1/ell_integral.tcc \
+  /usr/include/c++/11/tr1/exp_integral.tcc \
+  /usr/include/c++/11/tr1/hypergeometric.tcc \
+  /usr/include/c++/11/tr1/legendre_function.tcc \
+  /usr/include/c++/11/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/11/tr1/poly_hermite.tcc \
+  /usr/include/c++/11/tr1/poly_laguerre.tcc \
+  /usr/include/c++/11/tr1/riemann_zeta.tcc
 
 CMakeFiles/week3.dir/src/ui/qcustomplot-source/qcustomplot.cpp.o: /home/lerfme/Documents/cpp/test3/week3/src/ui/qcustomplot-source/qcustomplot.cpp \
   /usr/include/stdc-predef.h \
@@ -4437,11 +4462,11 @@ week3_autogen/6JUD6UOVAQ/moc_qcustomplot.cpp:
 
 /usr/include/c++/11/bits/stl_list.h:
 
-/usr/include/x86_64-linux-gnu/qt5/QtGui/QPainterPath:
-
 /usr/include/c++/11/ext/string_conversions.h:
 
 /usr/include/x86_64-linux-gnu/bits/iscanonical.h:
+
+/usr/include/x86_64-linux-gnu/qt5/QtGui/QPainterPath:
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringliteral.h:
 
@@ -4665,7 +4690,57 @@ week3_autogen/6JUD6UOVAQ/moc_qcustomplot.cpp:
 
 /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontmetrics.h:
 
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qtimezone.h:
+
+/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
+
+/usr/include/c++/11/iostream:
+
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qcborarray.h:
+
 /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontinfo.h:
+
+/usr/include/c++/11/math.h:
+
+/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
+
+/usr/include/x86_64-linux-gnu/qt5/QtCore/QDebug:
+
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qabstracteventdispatcher.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
+
+/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qprintpreviewdialog.h:
+
+/usr/include/c++/11/bits/specfun.h:
+
+/usr/include/x86_64-linux-gnu/qt5/QtCore/QFlags:
+
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtableview.h:
+
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qstyleplugin.h:
+
+/usr/include/c++/11/tr1/special_function_util.h:
+
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qnamespace.h:
+
+/usr/include/c++/11/tr1/bessel_function.tcc:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h:
+
+/usr/include/c++/11/tr1/ell_integral.tcc:
+
+/usr/include/c++/11/tr1/exp_integral.tcc:
+
+/usr/include/c++/11/tr1/hypergeometric.tcc:
+
+/usr/include/c++/11/tr1/poly_hermite.tcc:
+
+/usr/include/c++/11/tr1/poly_laguerre.tcc:
+
+/usr/include/c++/11/bits/std_mutex.h:
+
+/usr/include/c++/11/tr1/riemann_zeta.tcc:
 
 /home/lerfme/Documents/cpp/test3/week3/src/ui/qcustomplot-source/qcustomplot.h:
 
@@ -4717,16 +4792,6 @@ week3_autogen/6JUD6UOVAQ/moc_qcustomplot.cpp:
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qpauseanimation.h:
 
-/usr/include/x86_64-linux-gnu/qt5/QtCore/QFlags:
-
-/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qprintpreviewdialog.h:
-
-/usr/include/c++/11/bits/specfun.h:
-
-/usr/include/x86_64-linux-gnu/qt5/QtCore/QDebug:
-
-/usr/include/x86_64-linux-gnu/qt5/QtCore/qabstracteventdispatcher.h:
-
 /usr/include/x86_64-linux-gnu/qt5/QtGui/qimagereader.h:
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qdebug.h:
@@ -4739,6 +4804,14 @@ week3_autogen/6JUD6UOVAQ/moc_qcustomplot.cpp:
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qstatemachine.h:
 
+/usr/include/x86_64-linux-gnu/bits/floatn.h:
+
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qeventloop.h:
+
+/usr/include/x86_64-linux-gnu/qt5/QtCore/QtCore:
+
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qcontiguouscache.h:
+
 /usr/include/x86_64-linux-gnu/qt5/QtCore/QStack:
 
 /usr/include/c++/11/typeinfo:
@@ -4750,44 +4823,6 @@ week3_autogen/6JUD6UOVAQ/moc_qcustomplot.cpp:
 /usr/include/x86_64-linux-gnu/bits/fp-logb.h:
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qmimetype.h:
-
-/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
-
-/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
-
-/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtableview.h:
-
-/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qstyleplugin.h:
-
-/usr/include/c++/11/tr1/special_function_util.h:
-
-/usr/include/x86_64-linux-gnu/qt5/QtCore/qnamespace.h:
-
-/usr/include/c++/11/tr1/bessel_function.tcc:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h:
-
-/usr/include/c++/11/tr1/ell_integral.tcc:
-
-/usr/include/c++/11/tr1/exp_integral.tcc:
-
-/usr/include/c++/11/tr1/hypergeometric.tcc:
-
-/usr/include/x86_64-linux-gnu/bits/floatn.h:
-
-/usr/include/x86_64-linux-gnu/qt5/QtCore/qeventloop.h:
-
-/usr/include/x86_64-linux-gnu/qt5/QtCore/qcontiguouscache.h:
-
-/usr/include/x86_64-linux-gnu/qt5/QtCore/QtCore:
-
-/usr/include/c++/11/tr1/poly_hermite.tcc:
-
-/usr/include/c++/11/tr1/poly_laguerre.tcc:
-
-/usr/include/c++/11/bits/std_mutex.h:
-
-/usr/include/c++/11/tr1/riemann_zeta.tcc:
 
 /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/QtPrintSupportDepends:
 
@@ -4896,14 +4931,6 @@ week3_autogen/6JUD6UOVAQ/moc_qcustomplot.cpp:
 /usr/include/x86_64-linux-gnu/qt5/QtGui/qvector4d.h:
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qthreadstorage.h:
-
-/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
-
-/usr/include/c++/11/iostream:
-
-/usr/include/x86_64-linux-gnu/qt5/QtCore/qcborarray.h:
-
-/usr/include/x86_64-linux-gnu/qt5/QtCore/qtimezone.h:
 
 /usr/include/x86_64-linux-gnu/qt5/QtGui/QPainter:
 

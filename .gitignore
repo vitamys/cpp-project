@@ -1,0 +1,5 @@
+# cpp
+*.zip
+build-week*/
+test3/build-week3-Desktop-Debug/
+

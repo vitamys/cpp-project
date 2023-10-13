@@ -3,6 +3,8 @@ Create
 a simple phone book with the content given in a vector. Choose the appropriate container.
 The program should ask the user to enter a name and present the number if exists and warn otherwise.
 Leave the phone book with Exit
+TODO: feedback: while loop to be able to ask multiple names, and test fo rexti input to exit
+cmakelists.txt: copy forbes to correct location
 */
 
 #include <iostream>
