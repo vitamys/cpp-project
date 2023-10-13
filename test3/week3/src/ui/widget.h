@@ -16,9 +16,7 @@ public:
     ~Widget();
 
 public slots:
-    void plotData();
     void plotECG();
-    void plotMarta();
 
 private:
     Ui::Widget *ui;
