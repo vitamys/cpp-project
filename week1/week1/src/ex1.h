@@ -94,7 +94,7 @@ int four_range_loop(char letter){
     std::sort(v.begin(), v.end());
 
 
-    for (const std::string& car : v) {
+    for (auto car : v) {
         if (car.front() == letter){
             std::cout << car << "\n";
         }
@@ -118,7 +118,7 @@ int five(std::string allowedChars)
                  [&allowedChars](const std::string& brand) {
                      char firstChar = std::tolower(brand.front()); // Convert to lowercase for case-insensitive comparison
                      return std::any_of(allowedChars.begin(), allowedChars.end(),
-                                        [firstChar](char c) {
+                                        [&firstChar](char c) {
                                             return std::tolower(c) == firstChar;
                                         });
                  });

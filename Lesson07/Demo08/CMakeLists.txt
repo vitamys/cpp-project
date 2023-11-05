@@ -1,0 +1,27 @@
+# Set Name of project and language
+project(01_ThreadDemo LANGUAGES CXX)
+
+# Set cmake version
+cmake_minimum_required(VERSION 3.20)
+
+find_package(Threads)
+find_package(TBB) #not required for all machines
+
+# Create executable using the specified source files
+add_executable(${PROJECT_NAME} main1.cpp)
+
+# Define required c++ standard to C++11
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_23)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE Threads::Threads TBB::tbb)
+
+# set build type to Debug/Release
+set(CMAKE_BUILD_TYPE "Release")
+
+# Set compile options, enable warnings
+target_compile_options(${PROJECT_NAME} PRIVATE
+$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:GNU>>: -Wall>
+$<$<CXX_COMPILER_ID:MSVC>: /W3>
+)
+
+

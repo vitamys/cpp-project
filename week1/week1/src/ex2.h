@@ -42,7 +42,7 @@ void uniqueWords(){
 
 
         std::cout << "The unique word list contains:" << std::endl;
-        for (const std::string& uniqueWord : uniqueWords) {
+        for (auto uniqueWord : uniqueWords) {
             std::cout << uniqueWord << " ";
         }
         std::cout << std::endl;

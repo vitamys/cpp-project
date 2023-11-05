@@ -8,12 +8,12 @@ using namespace std;
 
 int main()
 {
-    one();
-    two();
-    three();
-    four_loop('A');
+ //   one();
+//    two();
+//    three();
+//    four_loop('A');
     four_range_loop('A');
-    five("ABC");
-    uniqueWords();
+//    five("ABC");
+    //uniqueWords();
     return 0;
 }
