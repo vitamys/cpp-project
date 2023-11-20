@@ -101,3 +101,9 @@ bool GameOfLife::isGridEmpty() const {
 
     return true;
 }
+
+const std::vector<std::vector<char>>& GameOfLife::getGrid() const {
+       return grid;
+   }
+
+

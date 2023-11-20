@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <vector>
+#include <QLabel>
 using namespace std;
 
 namespace Ui {
@@ -18,7 +19,10 @@ public:
     ~Widget();
 
 public slots:
-    void startGame(const std::vector<std::vector<char>>& pattern);
+    void startGame(const std::vector<std::vector<char>>& pattern, QLabel* outputLabel);
+    void startGameWithPattern();
+    void disableAllButtons();
+    void enableAllButtons();
 
 private:
     Ui::Widget *ui;

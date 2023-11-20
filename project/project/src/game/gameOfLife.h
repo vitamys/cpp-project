@@ -12,6 +12,7 @@ public:
     void printGrid() const;
     void updateGrid();
     bool isGridEmpty() const;
+    const std::vector<std::vector<char>>& getGrid() const;
 
 private:
     int countLiveNeighbors(int row, int col) const;
