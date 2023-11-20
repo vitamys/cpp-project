@@ -51,7 +51,8 @@ std::cout << std::endl;
 
 // 5) Calculate elementwise product and save in r e s u l t and cout r e s u l t
 // vector<int> result;
-
+int result;
+result= inner_product(vec.begin(), vec.end(),vec.begin()+1);
 // transform(vec2.begin(),vec2.end(), back_inserter(result),[](auto x, auto y){return x*y;});
 // copy(vec2.begin(), vec2.end(),ostream_iterator<int>{std::cout, " "});
 // cout << endl;

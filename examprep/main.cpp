@@ -4,9 +4,58 @@
 #include <iterator>
 #include <fstream>
 #include <set>
+#include <map>
+#include <cctype>
+#include <thread>
+#include <future>
 
 
 using namespace std;
+int square(int i){
+    return i*i;
+}
+
+void futureVersion(){
+    int sumOfSquares = 0;
+    int N = 20;
+    vector<future<int>> res;
+
+    for (size_t s=0;s<N; s++ ){
+        res.push_back(async(launch::async,square,s));
+    }
+    for (auto& f : res) {
+           sumOfSquares += f.get();
+       }
+    cout << "Result is: " << sumOfSquares << endl;
+}
+
+void countOccurences(){
+
+    string poem=
+    "Take this kiss upon the brow!"
+    "And, in parting from you now,"
+    "Thus much let me avow--"
+    "You are not wrong, who deem"
+    "That my days have been a dream;"
+    "Yet if hope has flown away"
+    "Is all that we see or seem"
+    "But a dream within a dream?";
+    // Your Code
+    map<char, size_t> res;
+
+    for (char c: poem){
+        if(isalpha(c)){
+            c=tolower(c);
+            res[c]++;
+        }
+
+    }
+
+
+    for(auto a : res){
+        cout<< a.first<< ": " <<a.second <<endl;
+    }
+}
 
 void readfile(){
     ifstream doc("cars.txt");
@@ -77,7 +126,9 @@ int main()
         cout<< v << " ";
     }
 
+   // countOccurences();
 
+    futureVersion();
 
 
     return 0;

@@ -33,7 +33,7 @@ public:
           {
          {
          std::unique_lock<mutex> qLocker{mu};
-         cv_producer.wait(qLocker, [this]{return !isFull()/*|| !isEmpty()*/; }); //to make sure not both threads wait to be notified
+         cv_producer.wait(qLocker, [this]{return !isFull(); });
 
              queue.push(data);
          }// lock gets unlocked at end of scope, so make scope here to unlock before notification.
