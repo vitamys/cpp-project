@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <vector>
 #include <QLabel>
+#include <QPainter>
+#include "gameOfLife.h"
 using namespace std;
 
 namespace Ui {
@@ -24,8 +26,13 @@ public slots:
     void disableAllButtons();
     void enableAllButtons();
 
+protected:
+    void paintEvent(QPaintEvent *event) override;
+
+
 private:
     Ui::Widget *ui;
+    std::unique_ptr<GameOfLife> game;
 };
 
 #endif // WIDGET_H

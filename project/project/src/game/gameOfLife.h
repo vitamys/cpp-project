@@ -13,6 +13,8 @@ public:
     void updateGrid();
     bool isGridEmpty() const;
     const std::vector<std::vector<char>>& getGrid() const;
+    void clear();
+
 
 private:
     int countLiveNeighbors(int row, int col) const;
@@ -24,6 +26,7 @@ private:
     int rows;
     int cols;
     std::vector<std::vector<char>> grid;
+
 };
 
 #endif // GAMEOFLIFE_H

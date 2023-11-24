@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <unistd.h>
+#include <algorithm>
 
 GameOfLife::GameOfLife(int size) : rows(size), cols(size), generation(0) {
     // Initialize the grid with random values
@@ -105,5 +106,11 @@ bool GameOfLife::isGridEmpty() const {
 const std::vector<std::vector<char>>& GameOfLife::getGrid() const {
        return grid;
    }
+
+void GameOfLife::clear(){
+    for_each(grid.begin(), grid.end(), [](std::vector<char>& row) {
+        std::fill(row.begin(), row.end(), '.');
+    });
+}
 
 

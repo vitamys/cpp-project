@@ -15,7 +15,9 @@ using namespace std;
 
 
 
-
+//TODO: show 4 patterns in parallel, with different colors -> use factory method and threads
+//TODO: implement with stl algos
+//TODO: include external library for visualization
 
 //int main() {
 //    // Use either the default constructor for a random initial state
