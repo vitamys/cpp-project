@@ -26,7 +26,8 @@ set(CMAKE_BUILD_TYPE "Debug")
 add_executable(${PROJECT_NAME} src/main.cpp src/ui/widget.h src/ui/widget.cpp src/ui/widget.ui
 src/game/gameOfLife.h src/game/gameOfLife.cpp
 src/game/pattern.h
-    )
+src/game/gamefactory.h src/game/gamefactory.cpp
+src/game/Blinkergame.cpp src/game/BlinkerGame.h)
 
 target_include_directories(${PROJECT_NAME} PRIVATE src src/ui src/game src/ui/cinder)
 

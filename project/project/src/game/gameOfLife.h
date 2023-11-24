@@ -3,6 +3,7 @@
 #define GAMEOFLIFE_H
 
 #include <vector>
+#include <QPainter>
 
 class GameOfLife {
 public:
@@ -14,15 +15,16 @@ public:
     bool isGridEmpty() const;
     const std::vector<std::vector<char>>& getGrid() const;
     void clear();
+    virtual void drawGrid(QPainter& painter) const =0;
 
 
-private:
+protected:
     int countLiveNeighbors(int row, int col) const;
     void randomizeGrid();
 
 public:
     int generation;
-private:
+protected:
     int rows;
     int cols;
     std::vector<std::vector<char>> grid;

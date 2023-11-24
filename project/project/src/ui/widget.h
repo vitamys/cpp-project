@@ -32,7 +32,13 @@ protected:
 
 private:
     Ui::Widget *ui;
-    std::unique_ptr<GameOfLife> game;
+    std::unique_ptr<GameOfLife> gameTopLeft;
+    std::unique_ptr<GameOfLife> gameTopRight;
+    std::unique_ptr<GameOfLife> gameBottomLeft;
+    std::unique_ptr<GameOfLife> gameBottomRight;
+
+    void initializeGames();
+    void updateGames();
 };
 
 #endif // WIDGET_H

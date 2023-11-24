@@ -92,6 +92,7 @@ int GameOfLife::countLiveNeighbors(int row, int col) const {
 
 bool GameOfLife::isGridEmpty() const {
     // Check if the grid contains no live cells
+    //TODO: replace with stl
     for (const auto &row : grid) {
         for (char cell : row) {
             if (cell == 'X') {
