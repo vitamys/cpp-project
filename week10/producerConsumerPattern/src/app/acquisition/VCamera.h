@@ -9,10 +9,9 @@
 
 #include <thread>
 #include "dataBuffer.h"
-#include "iBaseCamera.h"
 
 // Forward declarations
-class ICamera;
+class Control;
 class DataBufferPool;
 
 /**
@@ -20,11 +19,11 @@ class DataBufferPool;
  *
  * Note: Inheritating is not allowed since starting a thread in the constructor can be problematic for derived classes
  */
-class VCamera final : public IBaseCamera
+class VCamera final
 {
 
 public:
-     VCamera(ICamera* control, std::shared_ptr<DataBufferPool> dataPool);
+     VCamera(Control* control, std::shared_ptr<DataBufferPool> dataPool);
      ~VCamera();
 
      void startPlayData();
@@ -41,7 +40,7 @@ private:
      bool m_play;
 
      // TODO: Remove compile time dependency
-     ICamera* m_control;
+     Control* m_control;
      // ------------------------------------------------------------
 
      int m_playRate;

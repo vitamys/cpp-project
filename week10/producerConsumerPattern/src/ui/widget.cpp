@@ -36,8 +36,6 @@ Widget::Widget(QWidget *parent) :
     // Connect GUI
     connect(ui->play_pushButton, SIGNAL(clicked()), this, SLOT(playDataFromFile()));
     connect(ui->frameRateSlider, SIGNAL(valueChanged(int)), this, SLOT(setPlayRate()));
-    connect(ui->comboBox, &QComboBox::currentTextChanged, this, &Widget::setDevice);
-
 
     // Update GUI-timer to update images etc. every 20 ms
     m_guiUpdateTimer.reset( new QTimer(this));
@@ -59,7 +57,7 @@ Widget::~Widget()
 // -----------------------------------------------------------------
 // Functions called by Control (tight coupling)
 // -----------------------------------------------------------------
-void Widget::displayMsg(const std::string& tag, const std::string &msg)
+void Widget::displayMsg(std::string tag, std::string msg)
 {
     std::cout << " Info: " << tag << " : " <<  msg << std::endl;
 }
@@ -82,10 +80,6 @@ void Widget::initGUI()
     ui->frameRateSlider->setMaximum(80);
     ui->frameRateSlider->setMinimum(1);
     ui->frameRateSlider->setValue(33);
-
-    //Combobox
-    ui->comboBox->addItem("rgb");
-    ui->comboBox->addItem("grayscale");
 }
 
 // Called by GUI-timer
@@ -123,8 +117,4 @@ void Widget::updateFrameRate()
     long fps = static_cast<long>(1000.f * m_frameCount / FPS_LABEL_RATE );
     ui->frameRate_label->setText("FPS: " + QString::number(fps));
     m_frameCount = 0;
-}
-
-void Widget::setDevice(QString device){
-    m_appCtrl->setHardwareDevice(device.toStdString());
 }

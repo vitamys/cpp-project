@@ -12,26 +12,23 @@
 
 // TODO: Remove compile time dependency with observer pattern
 // control should compile without including widget.h
-//#include "widget.h"
-#include "iControl.h"
-#include "iCamera.h"
-#include "iBaseCamera.h"
+#include "widget.h"
 // ------------------------------------------------------------
 
 // Forward declarations
 class VCamera;
 class DataBufferPool;
 
-class Control :  public ICamera
+class Control :  public QWidget
 {
 
 public:
-    Control(IControl *parent);
+    Control(Widget *parent);
     ~Control();
 
     // TODO: Move to interface
-    void displayMsg(const std::string &tag, const std::string &msg) override;
-    void setData(DataBufferPtr dataJunk) override;
+    void displayMsg(const std::string &tag, const std::string &msg);
+    void setData(DataBufferPtr dataJunk);
     // ------------------------------------------------------------
 
     void init();
@@ -39,16 +36,13 @@ public:
     void stopPlaying();
     bool isPlaying() const;
     void setPlayRate(int playRate);
-    void setHardwareDevice(string device);
-    string getHardwareDevice(string device);
 
 private:
-    IControl* m_widget;
+    Widget* m_widget;
     uint m_height;
     uint m_widht;
-    string hardware_dw;
 
-    std::unique_ptr<IBaseCamera> m_player;
+    std::unique_ptr<VCamera> m_player;
     std::shared_ptr<DataBufferPool> m_dataPool;
 };
 #endif // CONTROL_H

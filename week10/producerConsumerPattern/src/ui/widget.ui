@@ -44,9 +44,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox"/>
-       </item>
-       <item>
         <widget class="QSlider" name="frameRateSlider">
          <property name="minimum">
           <number>0</number>

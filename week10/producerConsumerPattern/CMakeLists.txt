@@ -23,24 +23,17 @@ add_executable(${PROJECT_NAME}
     src/ui/widget.ui
     src/app/common/control.cpp
     src/app/common/control.h
-    src/app/common/iControl.h
     src/app/common/dataBuffer.cpp
     src/app/common/dataBuffer.h
     src/app/common/dataBufferPool.cpp
     src/app/common/dataBufferPool.h
     src/app/acquisition/VCamera.cpp
     src/app/acquisition/VCamera.h
-    src/app/acquisition/iCamera.h
     src/app/visualisation/videoVisualizer.cpp
     src/app/visualisation/videoVisualizer.h
     src/app/visualisation/rOg_image.cpp
     src/app/visualisation/rOg_image.h
     resources/res.qrc   # Resource file
-    src/app/acquisition/CameraFactory.h
-    src/app/acquisition/RGBcamera.h src/app/acquisition/RGBcamera.cpp
-    src/app/acquisition/iBaseCamera.h
-    src/app/acquisition/CameraFactory.cpp
-
     )
 
 # Set includes

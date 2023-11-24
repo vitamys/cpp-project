@@ -11,7 +11,6 @@
 #include <QTimer>
 #include <memory>
 #include "dataBuffer.h"
-#include "iControl.h"
 
 // Forward declarations
 class DataBuffer;
@@ -23,7 +22,7 @@ namespace Ui {
 class Widget;
 }
 
-class Widget : public QWidget, public IControl
+class Widget : public QWidget
 {
     Q_OBJECT
 
@@ -32,9 +31,8 @@ public:
     ~Widget();
 
     // TODO: Move to interface
-    void displayMsg(const std::string &tag, const std::string& msg) override;
-
-    void setData(DataBufferPtr data) override;
+    void displayMsg(std::string tag, std::string msg);
+    void setData(DataBufferPtr data);
     // ------------------------------------------------------------
 
 private:
@@ -46,7 +44,6 @@ private slots:
     void updateFrameRate();
     void playDataFromFile();
     void setPlayRate();
-    void setDevice(QString device);
 
 private:
     Ui::Widget* ui;
@@ -61,7 +58,6 @@ private:
     size_t m_frameCount;
     const size_t GUI_RATE_MS;
     const size_t FPS_LABEL_RATE;
-
 
 };
 

@@ -5,26 +5,22 @@
 ** Contact:    Patrik Arnold ( patrik.arnold@bfh.ch )
 *****************************************************************************/
 #include <chrono>
-#include "VCamera.h"
+#include "VRgbcamera.h"
 #include "dataBufferPool.h"
 
-// TODO: Remove compile time dependency
-#include "iCamera.h"
-// ------------------------------------------------------------
 
-VCamera::VCamera(ICamera *control, std::shared_ptr<DataBufferPool> dataPool) :
-    IBaseCamera(control, dataPool),
+VRgbCamera::VRgbCamera(Icontrol *control, std::shared_ptr<DataBufferPool> dataPool) :
+    ICamera(control, dataPool),
     m_tag("Player"),
     m_play(false),
-    m_control(control),
-    m_playRate(33),
-    m_dataPool(dataPool),
-    offset(0)
+    offset_r(0),
+    offset_g(85),
+    offset_b(170)
 {
     m_control->displayMsg(m_tag, "Player constructed");
 }
 
-VCamera::~VCamera()
+VRgbCamera::~VRgbCamera()
 {
     // Thread stopping
     m_play = false;
@@ -35,31 +31,32 @@ VCamera::~VCamera()
     }
 }
 
-void VCamera::startPlayData()
+void VRgbCamera::startPlayData()
 {
+    m_play = false;
+
+    if(m_acquireThread.joinable())
+    {
+        m_acquireThread.join();
+    }
     m_play = true;
-    m_acquireThread = std::thread(&VCamera::run, this);
+    m_acquireThread = std::thread(&VRgbCamera::run, this);
     m_control->displayMsg(m_tag, "Start Playing");
 }
 
-void VCamera::stop()
+void VRgbCamera::stop()
 {
     m_play = false;
     m_control->displayMsg(m_tag, "Stop playing");
 }
 
-bool VCamera::isPlaying()
+bool VRgbCamera::isPlaying()
 {
     return m_play;
 }
 
-void VCamera::setPlayRate(int playRate)
-{
-    m_playRate = playRate;
-}
-
 //******* Below runs in own thread **********//
-void VCamera::run()
+void VRgbCamera::run()
 {
     while( m_play )
     {
@@ -74,7 +71,7 @@ void VCamera::run()
     }
 }
 
-bool VCamera::readImage(DataBufferPtr data)
+bool VRgbCamera::readImage(DataBufferPtr data)
 {
     int width = data->m_image.width();
     int height = data->m_image.height();
@@ -83,10 +80,12 @@ bool VCamera::readImage(DataBufferPtr data)
     {
         for(int x = 0; x < width; x++)
         {
-            int val = x + offset;
-            data->m_image.setPixel(x, y, qRgb(val, val ,val));
+            data->m_image.setPixel(x, y, qRgb(x+offset_r, x+offset_g ,x+offset_b));
+            //data->m_image.setPixel(x, y, qRgb(0, 80 , 160));
         }
     }
-    offset+= 25;
+    offset_r+= 25;
+    offset_g+= 25;
+    offset_b+= 25;
     return true;
 }

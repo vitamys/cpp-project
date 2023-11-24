@@ -4,28 +4,28 @@
 **
 ** Contact:    Patrik Arnold ( patrik.arnold@bfh.ch )
 *****************************************************************************/
-#ifndef VCAMERA_H
-#define VCAMERA_H
+#ifndef RGBCamera_H
+#define RGBCamera_H
 
 #include <thread>
 #include "dataBuffer.h"
-#include "iBaseCamera.h"
+#include "iBaseCamera.h" //factory method
 
 // Forward declarations
 class ICamera;
 class DataBufferPool;
 
 /**
- * @brief The VCamera class
+ * @brief The RGBCamera class
  *
  * Note: Inheritating is not allowed since starting a thread in the constructor can be problematic for derived classes
  */
-class VCamera final : public IBaseCamera
+class RGBCamera final : public IBaseCamera
 {
 
 public:
-     VCamera(ICamera* control, std::shared_ptr<DataBufferPool> dataPool);
-     ~VCamera();
+     RGBCamera(ICamera* control, std::shared_ptr<DataBufferPool> dataPool);
+     ~RGBCamera();
 
      void startPlayData();
      void stop();
@@ -46,7 +46,9 @@ private:
 
      int m_playRate;
      std::shared_ptr<DataBufferPool> m_dataPool;
+
      int offset;
+
 };
 
-#endif // VCAMERA_H
+#endif // RGBCamera_H

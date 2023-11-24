@@ -44,9 +44,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox"/>
-       </item>
-       <item>
         <widget class="QSlider" name="frameRateSlider">
          <property name="minimum">
           <number>0</number>
@@ -54,6 +51,20 @@
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBox">
+         <item>
+          <property name="text">
+           <string>VCamera</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>VRgbCamera</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item>

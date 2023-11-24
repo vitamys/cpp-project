@@ -9,11 +9,10 @@
 #include "dataBufferPool.h"
 
 // TODO: Remove compile time dependency
-#include "iCamera.h"
+#include "control.h"
 // ------------------------------------------------------------
 
-VCamera::VCamera(ICamera *control, std::shared_ptr<DataBufferPool> dataPool) :
-    IBaseCamera(control, dataPool),
+VCamera::VCamera(Control *control, std::shared_ptr<DataBufferPool> dataPool) :
     m_tag("Player"),
     m_play(false),
     m_control(control),

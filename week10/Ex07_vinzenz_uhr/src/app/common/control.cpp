@@ -6,15 +6,15 @@
 *****************************************************************************/
 #include "control.h"
 #include "VCamera.h"
+#include "camera_factory.h"
 #include "dataBufferPool.h"
-#include "CameraFactory.h"
-#include "iBaseCamera.h"
 
-Control::Control(IControl *parent) :
-    m_widget(parent),
+class camera_factory;
+
+Control::Control(Iwidget *parent) :
+    Icontrol(parent),
     m_height(256),
-    m_widht(256),
-    hardware_dw("rgb")
+    m_widht(256)
 {
     // init control handels
     init();
@@ -32,10 +32,13 @@ void Control::init()
     m_dataPool.reset(new DataBufferPool(m_height, m_widht));
 
     // create file reader
-    m_player.reset( new RGBCamera( this, m_dataPool) );
+    if(m_player==nullptr)
+        m_player.reset( new VCamera( this, m_dataPool) );
 
     // Message
     m_widget->displayMsg("Control", "Constructed");
+
+    //m_camera_factory.reset( new camera_factory());
 }
 
 // -----------------------------------------------------------------
@@ -53,12 +56,7 @@ void Control::setData(DataBufferPtr dataJunk)
 
 void Control::startPlaying()
 {
-    init(); // reinit handlers
-    //TODO: get devicetype
-    string deviceType = hardware_dw;
-    m_widget->displayMsg("deviceType ", hardware_dw);
-    unique_ptr<CameraFactory> cameraFactory = unique_ptr<CameraFactory>(new CameraFactory());
-    m_player = unique_ptr<IBaseCamera>(cameraFactory->getCamera(this, m_dataPool, hardware_dw));
+    //init(); // reinit handlers
     m_player->startPlayData();
 }
 
@@ -73,11 +71,12 @@ bool Control::isPlaying() const
     return isPlaying;
 }
 
+void Control::setCamera(std::string camera)
+{
+    m_player=m_camera_factory->create_camera(camera, this, m_dataPool);
+}
+
 void Control::setPlayRate(int playRate)
 {
     m_player->setPlayRate(playRate);
-}
-
-void Control::setHardwareDevice(string device){
-    hardware_dw= device;
 }

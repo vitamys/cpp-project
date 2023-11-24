@@ -4,15 +4,16 @@
 **
 ** Contact:    Patrik Arnold ( patrik.arnold@bfh.ch )
 *****************************************************************************/
-#ifndef VCAMERA_H
-#define VCAMERA_H
+#ifndef VRGBCAMERA_H
+#define VRGBCAMERA_H
 
 #include <thread>
 #include "dataBuffer.h"
-#include "iBaseCamera.h"
+#include "icontrol.h"
+#include "ICamera.h"
 
 // Forward declarations
-class ICamera;
+class Icontrol;
 class DataBufferPool;
 
 /**
@@ -20,17 +21,16 @@ class DataBufferPool;
  *
  * Note: Inheritating is not allowed since starting a thread in the constructor can be problematic for derived classes
  */
-class VCamera final : public IBaseCamera
+class VRgbCamera final : public ICamera
 {
 
 public:
-     VCamera(ICamera* control, std::shared_ptr<DataBufferPool> dataPool);
-     ~VCamera();
+     VRgbCamera(Icontrol* control, std::shared_ptr<DataBufferPool> dataPool);
+     virtual ~VRgbCamera();
 
-     void startPlayData();
-     void stop();
-     bool isPlaying();
-     void setPlayRate(int playRate);
+     virtual void startPlayData() override;
+     virtual void stop() override;
+     virtual bool isPlaying() override;
 
 private:
      void run() ;
@@ -40,13 +40,9 @@ private:
      std::thread m_acquireThread;
      bool m_play;
 
-     // TODO: Remove compile time dependency
-     ICamera* m_control;
-     // ------------------------------------------------------------
-
-     int m_playRate;
-     std::shared_ptr<DataBufferPool> m_dataPool;
-     int offset;
+     int offset_r;
+     int offset_g;
+     int offset_b;
 };
 
-#endif // VCAMERA_H
+#endif // VRGBCAMERA_H
