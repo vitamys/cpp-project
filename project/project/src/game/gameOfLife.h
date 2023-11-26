@@ -4,18 +4,21 @@
 
 #include <vector>
 #include <QPainter>
+#include <QThread>
 
-class GameOfLife {
+class GameOfLife : public QObject {
+    Q_OBJECT
 public:
-    GameOfLife(int size);
-    GameOfLife(const std::vector<std::vector<char>>& initialPattern, int size);
+    explicit GameOfLife(int size);
+    explicit GameOfLife(const std::vector<std::vector<char>>& initialPattern, int size);
+
 
     void printGrid() const;
     void updateGrid();
     bool isGridEmpty() const;
     const std::vector<std::vector<char>>& getGrid() const;
     void clear();
-    virtual void drawGrid(QPainter& painter) const =0;
+    virtual void drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight) const =0;
 
 
 protected:

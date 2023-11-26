@@ -25,6 +25,7 @@ GameOfLife::GameOfLife(const std::vector<std::vector<char>>& initialPattern, int
         }
     }
 
+
 void GameOfLife::randomizeGrid() {
     // Fill the grid with random live ('X') and dead (' ') cells
     for (int i = 0; i < rows; ++i) {
