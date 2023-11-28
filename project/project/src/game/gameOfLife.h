@@ -5,12 +5,13 @@
 #include <vector>
 #include <QPainter>
 #include <QThread>
+#include "iGameOfLife.h"
 
-class GameOfLife : public QObject {
+class GameOfLife : public QObject, public IGameOfLife {
     Q_OBJECT
 public:
     explicit GameOfLife(int size);
-    explicit GameOfLife(const std::vector<std::vector<char>>& initialPattern, int size);
+    explicit GameOfLife(IGameOfLife *parent, const std::vector<std::vector<char>>& initialPattern, int size);
 
 
     void printGrid() const;
@@ -18,7 +19,10 @@ public:
     bool isGridEmpty() const;
     const std::vector<std::vector<char>>& getGrid() const;
     void clear();
+    void setQuadrant(int quadrant);
     virtual void drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight) const =0;
+    void setData(std::vector<std::vector<char>> grid) override;
+    void enableButtons(int quadrant) override;
 
 
 protected:
@@ -31,6 +35,10 @@ protected:
     int rows;
     int cols;
     std::vector<std::vector<char>> grid;
+    int quadrant;
+
+    IGameOfLife* m_widget;
+
 
 };
 

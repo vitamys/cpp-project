@@ -11,8 +11,8 @@ GameOfLife::GameOfLife(int size) : rows(size), cols(size), generation(0) {
 }
 
 
-GameOfLife::GameOfLife(const std::vector<std::vector<char>>& initialPattern, int size)
-        : rows(size), cols(size), generation(0), grid(rows, std::vector<char>(cols, ' ')) {
+GameOfLife::GameOfLife(IGameOfLife *parent,const std::vector<std::vector<char>>& initialPattern, int size)
+        : rows(size), cols(size), generation(0), grid(rows, std::vector<char>(cols, ' ')), m_widget(parent) {
 
         // Place the initial pattern in the middle of the grid
         int startRow = (rows - initialPattern.size()) / 2;
@@ -25,9 +25,16 @@ GameOfLife::GameOfLife(const std::vector<std::vector<char>>& initialPattern, int
         }
     }
 
+void GameOfLife::setData(std::vector<std::vector<char>> grid){
+    m_widget->setData(grid);
+}
+
+void GameOfLife::enableButtons(int quadrant){
+    m_widget->enableButtons(quadrant);
+}
 
 void GameOfLife::randomizeGrid() {
-    // Fill the grid with random live ('X') and dead (' ') cells
+    // Fill the grid with random live ('X') and dead ('.') cells
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
             grid[i][j] = (rand() % 2 == 0) ? '.' : 'X';
@@ -93,16 +100,11 @@ int GameOfLife::countLiveNeighbors(int row, int col) const {
 
 bool GameOfLife::isGridEmpty() const {
     // Check if the grid contains no live cells
-    //TODO: replace with stl
-    for (const auto &row : grid) {
-        for (char cell : row) {
-            if (cell == 'X') {
-                return false;
-            }
-        }
-    }
-
-    return true;
+    return std::none_of(grid.begin(), grid.end(), [](const auto &row) {
+            return std::any_of(row.begin(), row.end(), [](char cell) {
+                return cell == 'X';
+            });
+        });
 }
 
 const std::vector<std::vector<char>>& GameOfLife::getGrid() const {
@@ -113,6 +115,9 @@ void GameOfLife::clear(){
     for_each(grid.begin(), grid.end(), [](std::vector<char>& row) {
         std::fill(row.begin(), row.end(), '.');
     });
+}
+void GameOfLife::setQuadrant(int quadrant){
+    this->quadrant=quadrant;
 }
 
 

@@ -9,13 +9,14 @@
 
 #include "gameOfLife.h"
 #include "BlinkerGame.h"
+#include "iGameOfLife.h"
 using namespace std;
 
 namespace Ui {
 class Widget;
 }
 
-class Widget : public QuadraticWidget
+class Widget : public QuadraticWidget, public IGameOfLife
 {
     Q_OBJECT
 
@@ -24,31 +25,42 @@ public:
     ~Widget();
 
 public slots:
-    void startGame(const std::vector<std::vector<char>>& pattern, QLabel* outputLabel);
+    void startGame(int quadrant,const std::vector<std::vector<char>>& pattern, QLabel* outputLabel);
     void startGameWithPattern();
-    void disableAllButtons();
-    void enableAllButtons();
+    void disableAllButtons(int quadrant);
+    //void enableAllButtons();
 
 signals:
     void startGameSignal(const std::vector<std::vector<char>>& pattern, QLabel* outputLabel);
+    void startBlinker();
 
 
 protected:
     void paintEvent(QPaintEvent *event) override;
 
+private slots:
+    void updateGui();
 
 private:
     Ui::Widget *ui;
-    std::unique_ptr<GameOfLife> gameTopLeft;
+    std::unique_ptr<BlinkerGame> gameTopLeft;
     std::unique_ptr<BlinkerGame> gameTopRight;
     std::unique_ptr<GameOfLife> gameBottomLeft;
     std::unique_ptr<GameOfLife> gameBottomRight;
 
-    QThread *threadTopRight;
+    std::unique_ptr<QTimer> m_guiUpdateTimer;
+
+    const size_t GUI_RATE_MS;
+
+
+    //std::shared_ptr<DataBuffer> m_lastData;
+    //TODO: implement observer pattern. save data in this buffer then display at frame rate ie paint
+    void setData(std::vector<std::vector<char>> grid) override;
+    void enableButtons(int qudrant) override;
 
 
     void initializeGames();
-    void updateGames();
+    void updateGames(std::vector<std::vector<char>> grid);
     void drawGrid(QPainter& painter, const std::vector<std::vector<char> > &grid) ;
 };
 

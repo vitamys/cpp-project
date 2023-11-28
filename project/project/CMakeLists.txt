@@ -28,7 +28,8 @@ src/game/gameOfLife.h src/game/gameOfLife.cpp
 src/game/pattern.h
 src/game/gamefactory.h src/game/gamefactory.cpp
 src/game/Blinkergame.cpp src/game/BlinkerGame.h
-src/ui/quadraticWidget.h src/ui/quadraticWidget.cpp)
+src/ui/quadraticWidget.h src/ui/quadraticWidget.cpp
+src/game/iGameOfLife.h)
 
 target_include_directories(${PROJECT_NAME} PRIVATE src src/ui src/game src/ui/cinder)
 

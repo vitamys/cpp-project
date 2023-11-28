@@ -9,14 +9,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>800</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="gliderButton">
+  <widget class="QPushButton" name="gliderButton_1">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -29,7 +29,7 @@
     <string>Glider</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="beaconButton">
+  <widget class="QPushButton" name="beaconButton_1">
    <property name="geometry">
     <rect>
      <x>210</x>
@@ -58,9 +58,37 @@
     <string/>
    </property>
   </widget>
+  <widget class="QPushButton" name="beaconButton_2">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>10</y>
+     <width>169</width>
+     <height>47</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Beacon</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="gliderButton_2">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>10</y>
+     <width>169</width>
+     <height>47</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Glider</string>
+   </property>
+  </widget>
   <zorder>gridLabel</zorder>
-  <zorder>gliderButton</zorder>
-  <zorder>beaconButton</zorder>
+  <zorder>gliderButton_1</zorder>
+  <zorder>beaconButton_1</zorder>
+  <zorder>beaconButton_2</zorder>
+  <zorder>gliderButton_2</zorder>
  </widget>
  <resources/>
  <connections/>
