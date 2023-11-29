@@ -16,12 +16,10 @@ public:
     void drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight) const override;
 
 public slots:
-    void process();
-signals:
-    void data(std::vector<std::vector<char>> grid);
+    //void process();
 private:
     std::vector<int> rgb;
-    QThread workerThread;
+    //QThread workerThread;
 
 
 };

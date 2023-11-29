@@ -10,9 +10,9 @@
 class GameOfLife : public QObject, public IGameOfLife {
     Q_OBJECT
 public:
-    explicit GameOfLife(int size);
+    explicit GameOfLife(IGameOfLife *parent, int size);
     explicit GameOfLife(IGameOfLife *parent, const std::vector<std::vector<char>>& initialPattern, int size);
-
+    virtual ~GameOfLife();
 
     void printGrid() const;
     void updateGrid();
@@ -25,9 +25,11 @@ public:
     void enableButtons(int quadrant) override;
 
 
+
 protected:
     int countLiveNeighbors(int row, int col) const;
     void randomizeGrid();
+    void process();
 
 public:
     int generation;
@@ -38,6 +40,7 @@ protected:
     int quadrant;
 
     IGameOfLife* m_widget;
+    QThread workerThread;
 
 
 };

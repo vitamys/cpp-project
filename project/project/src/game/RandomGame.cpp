@@ -1,4 +1,4 @@
-#include "BlinkerGame.h"
+#include "RandomGame.h"
 #include <iostream>
 #include <cstdlib>
 #include <unistd.h>
@@ -6,33 +6,16 @@
 #include <QDebug>
 
 
-BlinkerGame::BlinkerGame(IGameOfLife *parent, const std::vector<std::vector<char>>& initialPattern, int size):GameOfLife(parent,initialPattern, size){
+RandomGame::RandomGame(IGameOfLife *parent, int size):GameOfLife(parent, size){
     rgb.push_back(255); //r value
-    rgb.push_back(15); //g value
-    rgb.push_back(0); //b value
-//    qDebug() << "thread" << QObject::thread();
-
-//    this->moveToThread(&workerThread);
-//    // Connect the thread's started signal to the process method
-//    qDebug() << "thread after"<< QObject::thread();
-
-//    connect(&workerThread, &QThread::started, this, &BlinkerGame::process);
-//    connect(&workerThread, &QThread::finished, this, &BlinkerGame::clear);
-
-//    workerThread.start();
+    rgb.push_back(255); //g value
+    rgb.push_back(15); //b value
 
 
 }
-BlinkerGame::~BlinkerGame()
-{
-    // Clean up when the object is destroyed
-//    workerThread.quit();
-//    workerThread.wait();
-}
 
 
-
-void BlinkerGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight) const{
+void RandomGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight) const{
 
     QColor color(rgb[0], rgb[1], rgb[2]);
 
@@ -75,16 +58,4 @@ void BlinkerGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHei
     }
 
 }
-//void BlinkerGame::process(){
-//    while ( this->generation < 50 && !this->isGridEmpty()) {
-
-//        this->updateGrid();
-//        m_widget->setData(this->grid);
-//        QThread::usleep(100000);// Sleep for 100 milliseconds
-//    }
-//    this->clear();
-//    m_widget->enableButtons(this->quadrant);
-
-//}
-
 

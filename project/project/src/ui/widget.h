@@ -25,14 +25,9 @@ public:
     ~Widget();
 
 public slots:
-    void startGame(int quadrant,const std::vector<std::vector<char>>& pattern, QLabel* outputLabel);
+    void startGame(int quadrant, QString patternname);
     void startGameWithPattern();
     void disableAllButtons(int quadrant);
-    //void enableAllButtons();
-
-signals:
-    void startGameSignal(const std::vector<std::vector<char>>& pattern, QLabel* outputLabel);
-    void startBlinker();
 
 
 protected:
@@ -43,8 +38,8 @@ private slots:
 
 private:
     Ui::Widget *ui;
-    std::unique_ptr<BlinkerGame> gameTopLeft;
-    std::unique_ptr<BlinkerGame> gameTopRight;
+    std::unique_ptr<GameOfLife> gameTopLeft;
+    std::unique_ptr<GameOfLife> gameTopRight;
     std::unique_ptr<GameOfLife> gameBottomLeft;
     std::unique_ptr<GameOfLife> gameBottomRight;
 

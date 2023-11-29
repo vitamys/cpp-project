@@ -29,9 +29,11 @@ src/game/pattern.h
 src/game/gamefactory.h src/game/gamefactory.cpp
 src/game/Blinkergame.cpp src/game/BlinkerGame.h
 src/ui/quadraticWidget.h src/ui/quadraticWidget.cpp
-src/game/iGameOfLife.h)
+src/game/iGameOfLife.h
+src/game/SpaceshipGame.cpp src/game/SpaceshipGame.h
+src/game/RandomGame.h src/game/RandomGame.cpp)
 
-target_include_directories(${PROJECT_NAME} PRIVATE src src/ui src/game src/ui/cinder)
+target_include_directories(${PROJECT_NAME} PRIVATE src src/ui src/game )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets Qt5::PrintSupport)
 

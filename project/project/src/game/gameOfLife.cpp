@@ -3,11 +3,23 @@
 #include <cstdlib>
 #include <unistd.h>
 #include <algorithm>
+#include <QDebug>
 
-GameOfLife::GameOfLife(int size) : rows(size), cols(size), generation(0) {
+
+GameOfLife::GameOfLife(IGameOfLife *parent,int size) : rows(size), cols(size), generation(0), m_widget(parent)  {
     // Initialize the grid with random values
     grid.resize(rows, std::vector<char>(cols, '.'));
     randomizeGrid();
+    qDebug() << "thread" << QObject::thread();
+
+    this->moveToThread(&workerThread);
+    // Connect the thread's started signal to the process method
+    qDebug() << "thread after"<< QObject::thread();
+
+    connect(&workerThread, &QThread::started, this, &GameOfLife::process);
+    connect(&workerThread, &QThread::finished, this, &GameOfLife::clear);
+
+    workerThread.start();
 }
 
 
@@ -23,7 +35,23 @@ GameOfLife::GameOfLife(IGameOfLife *parent,const std::vector<std::vector<char>>&
                 grid[startRow + i][startCol + j] = initialPattern[i][j];
             }
         }
+        qDebug() << "thread" << QObject::thread();
+
+        this->moveToThread(&workerThread);
+        // Connect the thread's started signal to the process method
+        qDebug() << "thread after"<< QObject::thread();
+
+        connect(&workerThread, &QThread::started, this, &GameOfLife::process);
+        connect(&workerThread, &QThread::finished, this, &GameOfLife::clear);
+
+        workerThread.start();
     }
+GameOfLife::~GameOfLife()
+{
+    // Clean up when the object is destroyed
+    workerThread.quit();
+    workerThread.wait();
+}
 
 void GameOfLife::setData(std::vector<std::vector<char>> grid){
     m_widget->setData(grid);
@@ -118,6 +146,18 @@ void GameOfLife::clear(){
 }
 void GameOfLife::setQuadrant(int quadrant){
     this->quadrant=quadrant;
+}
+
+void GameOfLife::process(){
+    while ( this->generation < 50 && !this->isGridEmpty()) {
+
+        this->updateGrid();
+        m_widget->setData(this->grid);
+        QThread::usleep(100000);// Sleep for 100 milliseconds
+    }
+    this->clear();
+    m_widget->enableButtons(this->quadrant);
+
 }
 
 

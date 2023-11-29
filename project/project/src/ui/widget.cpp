@@ -32,6 +32,22 @@ Widget::Widget(QWidget *parent) :
     connect(ui->gliderButton_2, &QPushButton::clicked, this, [=]() {
         startGameWithPattern();
     });
+    connect(ui->randomButton_1, &QPushButton::clicked, this, [=]() {
+        startGameWithPattern();
+    });
+    connect(ui->randomButton_2, &QPushButton::clicked, this, [=]() {
+        startGameWithPattern();
+    });
+    connect(ui->lwssButton_1, &QPushButton::clicked, this, [=]() {
+        startGameWithPattern();
+    });
+    connect(ui->toadButton_1, &QPushButton::clicked, this, [=]() {
+        startGameWithPattern();
+    });
+    connect(ui->blinkerButton_1, &QPushButton::clicked, this, [=]() {
+        startGameWithPattern();
+    });
+
 
     // Update GUI-timer to update images etc. every 20 ms
     m_guiUpdateTimer.reset( new QTimer(this));
@@ -71,39 +87,37 @@ void Widget::startGameWithPattern() {
     QPushButton* clickedButton = qobject_cast<QPushButton*>(sender());
     if (clickedButton) {
 
-        QLabel* outputLabel = ui->gridLabel;
         QString buttonname= clickedButton->objectName();
         QStringList parts = buttonname.split("_");
         QString patternname= parts[0];
         int quadrant = parts[1].toInt();
 
         // Output the parts
-            for (const QString& part : parts) {
-                qDebug() << part;
-            }
+        for (const QString& part : parts) {
+            qDebug() << part;
+        }
 
         disableAllButtons(quadrant);
 
 
 
-        startGame(quadrant,Patterns::patternByName(patternname), outputLabel);
+        startGame(quadrant, patternname);
 
     }
 }
 
-void Widget::startGame(int quadrant,const std::vector<std::vector<char>>& pattern, QLabel* outputLabel){
+void Widget::startGame(int quadrant, QString patternname){
     // Use either the default constructor for a random initial state
     //GameOfLife game(pattern,10);
-    //TODO: move loop to process function in gameOFLife class. move class intialization to startGame and only pass button label
     unique_ptr<GameFactory> gameFactory = unique_ptr<GameFactory>(new GameFactory());
     //gameTopRight = unique_ptr<GameOfLife>(gameFactory->getGame(this,pattern, "gliderButton"));
 
     switch(quadrant){
-    case 1: gameTopLeft = std::make_unique<BlinkerGame>(this,pattern, 10);
+    case 1: gameTopLeft = unique_ptr<GameOfLife>(gameFactory->getGame(this,patternname));
         gameTopLeft->setQuadrant(1);
         break;
-    case 2:gameTopRight = std::make_unique<BlinkerGame>(this,pattern, 10);
-        gameTopLeft->setQuadrant(2);
+    case 2: gameTopRight = unique_ptr<GameOfLife>(gameFactory->getGame(this,patternname));
+        gameTopRight->setQuadrant(2);
 
         break;
     }
@@ -145,10 +159,17 @@ void Widget::disableAllButtons(int quadrant) {
     case 1:
         ui->beaconButton_1->setVisible(false);
         ui->gliderButton_1->setVisible(false);
+        ui->randomButton_1->setVisible(false);
+        ui->blinkerButton_1->setVisible(false);
+        ui->toadButton_1->setVisible(false);
+        ui->lwssButton_1->setVisible(false);
+
         break;
     case 2:
         ui->beaconButton_2->setVisible(false);
         ui->gliderButton_2->setVisible(false);
+        ui->randomButton_2->setVisible(false);
+        break;
     };
 }
 
@@ -159,10 +180,18 @@ void Widget::enableButtons(int quadrant) {
     case 1:
         ui->beaconButton_1->setVisible(true);
         ui->gliderButton_1->setVisible(true);
+        ui->randomButton_1->setVisible(true);
+        ui->blinkerButton_1->setVisible(true);
+        ui->toadButton_1->setVisible(true);
+        ui->lwssButton_1->setVisible(true);
+
         break;
     case 2:
         ui->beaconButton_2->setVisible(true);
         ui->gliderButton_2->setVisible(true);
+        ui->randomButton_2->setVisible(true);
+        break;
+
     }
 
 }
@@ -179,11 +208,11 @@ void Widget::paintEvent(QPaintEvent *event)
 
 
     // Draw each quadrant
-        painter.setViewport(0, 0, 2*width, 2*height);
-        if(gameTopLeft != nullptr){ // this method is called before game is selected, so check first
-            gameTopLeft->drawGrid(painter, width, height);
+    painter.setViewport(0, 0, 2*width, 2*height);
+    if(gameTopLeft != nullptr){ // this method is called before game is selected, so check first
+        gameTopLeft->drawGrid(painter, width, height);
 
-        }
+    }
 
     painter.setViewport(width, 0, 2*width, 2*height);
     if(gameTopRight != nullptr){ // this method is called before game is selected, so check first
@@ -192,9 +221,9 @@ void Widget::paintEvent(QPaintEvent *event)
     }
     //
 
-    //    painter.setViewport(0, height, width, height);
-    //    gameBottomLeft->drawGrid(painter);
+    //    painter.setViewport(0, height, 2*width, 2*height);
+    //    gameBottomLeft->drawGrid(painter, width, height);
 
-    //    painter.setViewport(width, height, width, height);
-    //    gameBottomRight->drawGrid(painter);
+    //    painter.setViewport(width, height, 2*width, 2*height);
+    //    gameBottomRight->drawGrid(painter, width, height);
 }
