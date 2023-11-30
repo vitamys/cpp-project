@@ -26,18 +26,19 @@ void MethuselahGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrant
 
     // Calculate cell size based on the dimensions of the quadrant and the grid size
     int cellSize = std::min(quadrantWidth / cols, quadrantHeight / rows);
+    if(!isGridEmpty()){
+        // Set up the pen for grid lines
+        QPen gridPen(Qt::gray);
+        gridPen.setStyle(Qt::DashLine);
+        painter.setPen(gridPen);
 
-    // Set up the pen for grid lines
-    QPen gridPen(Qt::gray);
-    gridPen.setStyle(Qt::DashLine);
-    painter.setPen(gridPen);
-
-    // Draw grid lines
-    for (int x = 0; x < quadrantWidth; x += cellSize) {
-        painter.drawLine(x, 0, x, quadrantHeight);
-    }
-    for (int y = 0; y < quadrantHeight; y += cellSize) {
-        painter.drawLine(0, y, quadrantWidth, y);
+        // Draw grid lines
+        for (int x = 0; x < quadrantWidth; x += cellSize) {
+            painter.drawLine(x, 0, x, quadrantHeight);
+        }
+        for (int y = 0; y < quadrantHeight; y += cellSize) {
+            painter.drawLine(0, y, quadrantWidth, y);
+        }
     }
 
     for (int i = 0; i < rows; ++i)

@@ -30,6 +30,7 @@ void RandomGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeig
     // Calculate cell size based on the dimensions of the quadrant and the grid size
     int cellSize = std::min(quadrantWidth / cols, quadrantHeight / rows);
 
+    if(!isGridEmpty()){
     // Set up the pen for grid lines
     QPen gridPen(Qt::gray);
     gridPen.setStyle(Qt::DashLine);
@@ -41,6 +42,7 @@ void RandomGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeig
     }
     for (int y = 0; y < quadrantHeight; y += cellSize) {
         painter.drawLine(0, y, quadrantWidth, y);
+    }
     }
 
     for (int i = 0; i < rows; ++i)

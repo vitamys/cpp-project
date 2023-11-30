@@ -41,14 +41,14 @@ Widget::~Widget()
 }
 
 void Widget::setData(std::vector<std::vector<char>> grid){
-    //TODO: append Data of grid to some buffer
+    //TODO: append Data of grid to some buffer or other data structure
     this->update();
     QApplication::processEvents();
 }
 // Called by GUI-timer
 void Widget::updateGui()
 {
-    if( true )
+    if( true ) //check for data in buffer here. move draw function back to here? what about factory method then?
     {
         this-> update(); //this will call the draw function
         QApplication::processEvents();
@@ -162,8 +162,8 @@ void Widget::paintEvent(QPaintEvent *event)
         gameBottomLeft->drawGrid(painter, width, height);
     }
 
-        painter.setViewport(width, height, 2*width, 2*height);
-        if (gameBottomRight != nullptr){
+    painter.setViewport(width, height, 2*width, 2*height);
+    if (gameBottomRight != nullptr){
         gameBottomRight->drawGrid(painter, width, height);
-        }
+    }
 }

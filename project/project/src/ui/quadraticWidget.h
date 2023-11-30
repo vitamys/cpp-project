@@ -10,14 +10,14 @@ public:
     QuadraticWidget(QWidget* parent = nullptr) : QWidget(parent) {}
 
 protected:
-//    void resizeEvent(QResizeEvent* event) override {
-//        // Ensure that the widget is always quadratic
-//        int size = qMin(event->size().width(), event->size().height());
-//        resize(size, size);
+    void resizeEvent(QResizeEvent* event) override {
+        // Ensure that the widget is always quadratic
+        int size = qMin(event->size().width(), event->size().height());
+        resize(size, size);
 
-//        // Call the base class implementation
-//        QWidget::resizeEvent(event);
-//    }
+        // Call the base class implementation
+        QWidget::resizeEvent(event);
+    }
 };
 
 #endif // QUADRATICWIDGET_H

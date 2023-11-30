@@ -36,15 +36,15 @@ void StaticGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeig
     QPen gridPen(Qt::gray);
     gridPen.setStyle(Qt::DashLine);
     painter.setPen(gridPen);
-
-    // Draw grid lines
-    for (int x = 0; x < quadrantWidth; x += cellSize) {
-        painter.drawLine(x, 0, x, quadrantHeight);
+    if(!isGridEmpty()){
+        // Draw grid lines
+        for (int x = 0; x < quadrantWidth; x += cellSize) {
+            painter.drawLine(x, 0, x, quadrantHeight);
+        }
+        for (int y = 0; y < quadrantHeight; y += cellSize) {
+            painter.drawLine(0, y, quadrantWidth, y);
+        }
     }
-    for (int y = 0; y < quadrantHeight; y += cellSize) {
-        painter.drawLine(0, y, quadrantWidth, y);
-    }
-
     for (int i = 0; i < rows; ++i)
     {
         for (int j = 0; j < cols; ++j)
