@@ -6,6 +6,7 @@
 #include <unistd.h>  // for sleep function
 #include <QTimer>
 #include <QDebug>
+#include <QRegularExpression>
 
 using namespace std;
 
@@ -15,38 +16,15 @@ Widget::Widget(QWidget *parent) :
     GUI_RATE_MS(50)
 {
     ui->setupUi(this);
+
     resize(800, 800);
+    // Find all child buttons of the widget
+    QList<QPushButton*> allButtons = this->findChildren<QPushButton*>();
 
-    connect(ui->beaconButton_1, &QPushButton::clicked, this, [=]() {
-        startGameWithPattern();
-    });
-
-    connect(ui->gliderButton_1, &QPushButton::clicked, this, [=]() {
-        startGameWithPattern();
-    });
-
-    connect(ui->beaconButton_2, &QPushButton::clicked, this, [=]() {
-        startGameWithPattern();
-    });
-
-    connect(ui->gliderButton_2, &QPushButton::clicked, this, [=]() {
-        startGameWithPattern();
-    });
-    connect(ui->randomButton_1, &QPushButton::clicked, this, [=]() {
-        startGameWithPattern();
-    });
-    connect(ui->randomButton_2, &QPushButton::clicked, this, [=]() {
-        startGameWithPattern();
-    });
-    connect(ui->lwssButton_1, &QPushButton::clicked, this, [=]() {
-        startGameWithPattern();
-    });
-    connect(ui->toadButton_1, &QPushButton::clicked, this, [=]() {
-        startGameWithPattern();
-    });
-    connect(ui->blinkerButton_1, &QPushButton::clicked, this, [=]() {
-        startGameWithPattern();
-    });
+    // Connect all buttons to the startGameWithPattern method
+    for (QPushButton* button : allButtons) {
+        connect(button, &QPushButton::clicked, this, &Widget::startGameWithPattern);
+    }
 
 
     // Update GUI-timer to update images etc. every 20 ms
@@ -107,11 +85,9 @@ void Widget::startGameWithPattern() {
 }
 
 void Widget::startGame(int quadrant, QString patternname){
-    // Use either the default constructor for a random initial state
-    //GameOfLife game(pattern,10);
     unique_ptr<GameFactory> gameFactory = unique_ptr<GameFactory>(new GameFactory());
-    //gameTopRight = unique_ptr<GameOfLife>(gameFactory->getGame(this,pattern, "gliderButton"));
 
+    //set the quadrant in each game to know where game is later on
     switch(quadrant){
     case 1: gameTopLeft = unique_ptr<GameOfLife>(gameFactory->getGame(this,patternname));
         gameTopLeft->setQuadrant(1);
@@ -120,79 +96,40 @@ void Widget::startGame(int quadrant, QString patternname){
         gameTopRight->setQuadrant(2);
 
         break;
+
+    case 3: gameBottomLeft = unique_ptr<GameOfLife>(gameFactory->getGame(this,patternname));
+        gameBottomLeft->setQuadrant(3);
+
+        break;
+    case 4: gameBottomRight = unique_ptr<GameOfLife>(gameFactory->getGame(this,patternname));
+        gameBottomRight->setQuadrant(4);
+
+        break;
     }
 
-    const int maxGenerations = 50;
-
-    //    while (!game.isGridEmpty() && game.generation < maxGenerations) {
-    //        game.printGrid();
-    //        game.updateGrid();
-    //        usleep(100000); // Sleep for 100 milliseconds (adjust as needed)
-    //    }
-    //TODO: move to gameoflife instances. use signals to update widget.
-    // TODO: make signal listen and update accordingly. thread finished, show buttons, update to paint
-    //    while ( gameTopRight->generation < maxGenerations && !gameTopRight->isGridEmpty()) {
-    //        // Update the QLabel with the current grid state
-    //        //            QString gridText;
-    //        //            for (const auto& row : game->getGrid()) {
-    //        //                for (char cell : row) {
-    //        //                    gridText += QString(cell);
-    //        //                }
-    //        //                gridText += "\n";
-    //        //            }
-    //        //            outputLabel->setText(gridText);
-
-    //        this->update();
-    //        QApplication::processEvents();  // Allow processing of events to update the UI
-    //        //usleep(100000);  // Sleep for 100 milliseconds (adjust as needed)
-    //        QThread::msleep(100);
-    //        gameTopRight->updateGrid();
-    //    }
-    //    gameTopRight->clear();
-    //    this->update();
 
 }
 void Widget::disableAllButtons(int quadrant) {
     qDebug() << "called methods disabelbuttons";
+    QString suffix = "_" + QString::number(quadrant);
 
-    switch (quadrant){
-    case 1:
-        ui->beaconButton_1->setVisible(false);
-        ui->gliderButton_1->setVisible(false);
-        ui->randomButton_1->setVisible(false);
-        ui->blinkerButton_1->setVisible(false);
-        ui->toadButton_1->setVisible(false);
-        ui->lwssButton_1->setVisible(false);
+    QList<QPushButton *> buttons = findChildren<QPushButton *>(QRegularExpression(suffix+"$"));
+    for (QPushButton *button : buttons) {
+        button->setVisible(false);
+    }
 
-        break;
-    case 2:
-        ui->beaconButton_2->setVisible(false);
-        ui->gliderButton_2->setVisible(false);
-        ui->randomButton_2->setVisible(false);
-        break;
-    };
 }
 
 
 void Widget::enableButtons(int quadrant) {
     qDebug() << "called method enable";
-    switch (quadrant){
-    case 1:
-        ui->beaconButton_1->setVisible(true);
-        ui->gliderButton_1->setVisible(true);
-        ui->randomButton_1->setVisible(true);
-        ui->blinkerButton_1->setVisible(true);
-        ui->toadButton_1->setVisible(true);
-        ui->lwssButton_1->setVisible(true);
+    QString suffix = "_" + QString::number(quadrant);
 
-        break;
-    case 2:
-        ui->beaconButton_2->setVisible(true);
-        ui->gliderButton_2->setVisible(true);
-        ui->randomButton_2->setVisible(true);
-        break;
-
+    QList<QPushButton *> buttons = findChildren<QPushButton *>(QRegularExpression(suffix+"$"));
+    for (QPushButton *button : buttons) {
+        button->setVisible(true);
     }
+
 
 }
 void Widget::paintEvent(QPaintEvent *event)
@@ -219,11 +156,14 @@ void Widget::paintEvent(QPaintEvent *event)
         gameTopRight->drawGrid(painter, width, height);
 
     }
-    //
 
-    //    painter.setViewport(0, height, 2*width, 2*height);
-    //    gameBottomLeft->drawGrid(painter, width, height);
+    painter.setViewport(0, height, 2*width, 2*height);
+    if(gameBottomLeft != nullptr){
+        gameBottomLeft->drawGrid(painter, width, height);
+    }
 
-    //    painter.setViewport(width, height, 2*width, 2*height);
-    //    gameBottomRight->drawGrid(painter, width, height);
+        painter.setViewport(width, height, 2*width, 2*height);
+        if (gameBottomRight != nullptr){
+        gameBottomRight->drawGrid(painter, width, height);
+        }
 }

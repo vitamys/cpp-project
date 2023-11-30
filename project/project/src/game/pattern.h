@@ -8,8 +8,25 @@ using namespace std;
 class Patterns {
 public:
     static std::vector<std::vector<char>> patternByName(const QString& name) {
-        if (name == "beaconButton") {
+        if( name== "blockButton"){
+            return block();
+        }
+        else if (name == "beehiveButton") {
+            return beehive();
+        } else if (name == "loafButton") {
+            return loaf();
+        } else if (name == "boatButton") {
+            return boat();
+        } else if (name == "tubButton") {
+            return tub();
+        }
+        else if (name == "beaconButton") {
             return beacon();
+        } else if (name == "blinkerButton") {
+            return blinker();
+
+        } else if (name == "toadButton") {
+            return toad();
         } else if (name == "gliderButton") {
             return glider();
 
@@ -19,17 +36,60 @@ public:
         } else if (name == "lwssButton") {
             return lwss();
 
-        } else if (name == "blinkerButton") {
-            return blinker();
+        } else if (name == "mwssButton") {
+            return mwss();
+        }else if (name == "rpentominoButton") {
+            return rPentomino();
+        } else if (name == "diehardButton") {
+            return diehard();
+        } else if (name == "acornButton") {
+            return acorn();
+        }else {
+            // return toad as default
 
-        } else if (name == "toadButton") {
             return toad();
-        } else {
-            // Handle other patterns or return a default pattern
-
-            return std::vector<std::vector<char>>(); // Returning an empty pattern for simplicity
         }
     }
+    //static patterns (still lives)
+    static std::vector<std::vector<char>> block() {
+        return {
+            {'X', 'X' },
+            {'X', 'X'},
+        };
+    }
+    static std::vector<std::vector<char>> beehive() {
+        return {
+            {' ', 'X', 'X', ' '},
+            {'X', ' ', ' ', 'X'},
+            {' ', 'X', 'X', ' '},
+        };
+    }
+
+    static std::vector<std::vector<char>> loaf() {
+        return {
+            {' ', 'X', 'X', ' '},
+            {'X', ' ', ' ', 'X'},
+            {' ', 'X', ' ', 'X'},
+            {' ', ' ', 'X', ' '},
+        };
+    }
+
+    static std::vector<std::vector<char>> boat() {
+        return {
+            {'X', 'X', ' ',},
+            {'X', ' ', 'X',},
+            {' ', 'X', ' ',},
+        };
+    }
+
+    static std::vector<std::vector<char>> tub() {
+        return {
+            {' ', 'X', ' ',},
+            {'X', ' ', 'X',},
+            {' ', 'X', ' ',},
+        };
+    }
+    //oscillators
     static std::vector<std::vector<char>> beacon() {
         return {
             {'X', 'X', ' ',' '},
@@ -49,6 +109,7 @@ public:
             {'X', 'X', 'X',' '},
         };
     }
+    //gliders
     static std::vector<std::vector<char>> glider() {
         return {
             {' ', 'X', ' '},
@@ -65,6 +126,40 @@ public:
             {' ', ' ', 'X', 'X', ' '},
         };
     }
+    static std::vector<std::vector<char>> mwss() {
+        return {
+            {' ', 'X', 'X', 'X', ' ', ' '},
+            {'X', 'X', 'X', 'X', 'X', ' '},
+            {'X', 'X', 'X', ' ', 'X', 'X'},
+            {' ', ' ', ' ', 'X', 'X', ' '},
+        };
+    }
+
+    //methuselas
+    static std::vector<std::vector<char>> rPentomino() {
+        return {
+            {' ', 'X', 'X', },
+            {'X', 'X', ' '},
+            {' ', 'X', ' '},
+        };
+    }
+
+    static std::vector<std::vector<char>> diehard() {
+        return {
+            {' ', ' ', ' ', ' ', ' ', ' ', 'X', ' ', ' '},
+            {'X', 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+            {' ', 'X', ' ', ' ', ' ', 'X', 'X', 'X', ' '},
+        };
+    }
+
+    static std::vector<std::vector<char>> acorn() {
+        return {
+            {' ', 'X', ' ', ' ', ' ', ' ', ' ', ' '},
+            {' ', ' ', ' ', 'X', ' ', ' ', ' ', ' '},
+            {'X', 'X', ' ', ' ', 'X', 'X', 'X', ' '},
+        };
+    }
+
 };
 
 #endif // PATTERN_H

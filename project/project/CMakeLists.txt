@@ -31,7 +31,9 @@ src/game/Blinkergame.cpp src/game/BlinkerGame.h
 src/ui/quadraticWidget.h src/ui/quadraticWidget.cpp
 src/game/iGameOfLife.h
 src/game/SpaceshipGame.cpp src/game/SpaceshipGame.h
-src/game/RandomGame.h src/game/RandomGame.cpp)
+src/game/RandomGame.h src/game/RandomGame.cpp
+src/game/StaticGame.h src/game/StaticGame.cpp
+src/game/MethuselahGame.h src/game/MethuselahGame.cpp)
 
 target_include_directories(${PROJECT_NAME} PRIVATE src src/ui src/game )
 
