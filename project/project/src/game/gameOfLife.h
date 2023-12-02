@@ -21,8 +21,10 @@ public:
     void clear();
     void setQuadrant(int quadrant);
     virtual void drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight) const =0;
-    void setData(std::vector<std::vector<char>> grid) override;
+    void setData(std::vector<std::vector<char>> grid, int quadrant) override;
     void enableButtons(int quadrant) override;
+    void drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight, std::vector<std::vector<char>> grid) const ;
+
 
 
 

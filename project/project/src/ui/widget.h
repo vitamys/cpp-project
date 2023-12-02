@@ -49,8 +49,9 @@ private:
 
 
     //std::shared_ptr<DataBuffer> m_lastData;
+    std::vector<std::vector<std::vector<std::vector<char>>>> lastData;
     //TODO: implement observer pattern. save data in this buffer then display at frame rate ie paint
-    void setData(std::vector<std::vector<char>> grid) override;
+    void setData(std::vector<std::vector<char>> grid, int quadrant) override;
     void enableButtons(int qudrant) override;
 
 

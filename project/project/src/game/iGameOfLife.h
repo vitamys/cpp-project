@@ -8,7 +8,7 @@ class IGameOfLife
 public:
     IGameOfLife(){}
     virtual ~IGameOfLife(){}
-    virtual void setData(std::vector<std::vector<char>> grid) = 0;
+    virtual void setData(std::vector<std::vector<char>> grid, int quadrant) = 0;
     virtual void enableButtons(int qudrant)=0;
 };
 
