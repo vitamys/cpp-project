@@ -30,12 +30,10 @@ void SpaceshipGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantH
     // Calculate cell size based on the dimensions of the quadrant and the grid size
     int cellSize = std::min(quadrantWidth / cols, quadrantHeight / rows);
     if(!isGridEmpty()){
-        // Set up the pen for grid lines
         QPen gridPen(Qt::gray);
         gridPen.setStyle(Qt::DashLine);
         painter.setPen(gridPen);
 
-        // Draw grid lines
         for (int x = 0; x < quadrantWidth; x += cellSize) {
             painter.drawLine(x, 0, x, quadrantHeight);
         }
@@ -50,7 +48,6 @@ void SpaceshipGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantH
         {
             char cellState = grid[i][j];
 
-            // If the cell is alive, draw it
             if (cellState == 'X')
             {
                 painter.drawRect(j * cellSize, i * cellSize, cellSize, cellSize);

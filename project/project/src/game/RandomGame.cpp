@@ -31,12 +31,10 @@ void RandomGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeig
     int cellSize = std::min(quadrantWidth / cols, quadrantHeight / rows);
 
     if(!isGridEmpty()){
-    // Set up the pen for grid lines
     QPen gridPen(Qt::gray);
     gridPen.setStyle(Qt::DashLine);
     painter.setPen(gridPen);
 
-    // Draw grid lines
     for (int x = 0; x < quadrantWidth; x += cellSize) {
         painter.drawLine(x, 0, x, quadrantHeight);
     }
@@ -51,7 +49,6 @@ void RandomGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeig
         {
             char cellState = grid[i][j];
 
-            // If the cell is alive, draw it
             if (cellState == 'X')
             {
                 painter.drawRect(j * cellSize, i * cellSize, cellSize, cellSize);

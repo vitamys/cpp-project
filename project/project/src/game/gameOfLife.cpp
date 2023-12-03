@@ -13,7 +13,6 @@ GameOfLife::GameOfLife(IGameOfLife *parent,int size) : rows(size), cols(size), g
     qDebug() << "thread" << QObject::thread();
 
     this->moveToThread(&workerThread);
-    // Connect the thread's started signal to the process method
     qDebug() << "thread after"<< QObject::thread();
 
     connect(&workerThread, &QThread::started, this, &GameOfLife::process);
@@ -38,7 +37,6 @@ GameOfLife::GameOfLife(IGameOfLife *parent,const std::vector<std::vector<char>>&
         qDebug() << "thread" << QObject::thread();
 
         this->moveToThread(&workerThread);
-        // Connect the thread's started signal to the process method
         qDebug() << "thread after"<< QObject::thread();
 
         connect(&workerThread, &QThread::started, this, &GameOfLife::process);
@@ -71,16 +69,7 @@ void GameOfLife::randomizeGrid() {
 }
 
 
-void GameOfLife::printGrid() const {
-    // Print the current state of the grid
-    std::cout << "Generation: " << generation << std::endl;
-    for (const auto &row : grid) {
-        for (char cell : row) {
-            std::cout << cell;
-        }
-        std::cout << std::endl;
-    }
-}
+
 
 void GameOfLife::updateGrid() {
     // Update the grid based on the rules of the Game of Life
@@ -135,9 +124,6 @@ bool GameOfLife::isGridEmpty() const {
         });
 }
 
-const std::vector<std::vector<char>>& GameOfLife::getGrid() const {
-       return grid;
-   }
 
 void GameOfLife::clear(){
     for_each(grid.begin(), grid.end(), [](std::vector<char>& row) {
@@ -153,56 +139,13 @@ void GameOfLife::process(){
 
         this->updateGrid();
         m_widget->setData(this->grid, this->quadrant);
-        //QThread::usleep(100000);// Sleep for 100 milliseconds
+        QThread::usleep(100000);// Sleep for 100 milliseconds
     }
     this->clear();
-    //m_widget->enableButtons(this->quadrant);
+    m_widget->setData(this->grid, this->quadrant);
+    m_widget->enableButtons(this->quadrant);
 
 }
 
-void GameOfLife::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight, std::vector<std::vector<char>> grid) const{
-
-    //QColor color(rgb[0], rgb[1], rgb[2]);
-
-    QPen cellPen(Qt::white);
-    cellPen.setWidth(2);
-    QBrush cellBrush(Qt::white, Qt::SolidPattern);
-
-
-    painter.setPen(cellPen);
-    painter.setBrush(cellBrush);
-
-    // Calculate cell size based on the dimensions of the quadrant and the grid size
-    int cellSize = std::min(quadrantWidth / cols, quadrantHeight / rows);
-    //if(!isGridEmpty()){
-        // Set up the pen for grid lines
-        QPen gridPen(Qt::gray);
-        gridPen.setStyle(Qt::DashLine);
-        painter.setPen(gridPen);
-
-        // Draw grid lines
-        for (int x = 0; x < quadrantWidth; x += cellSize) {
-            painter.drawLine(x, 0, x, quadrantHeight);
-        }
-        for (int y = 0; y < quadrantHeight; y += cellSize) {
-            painter.drawLine(0, y, quadrantWidth, y);
-        }
-    //}
-
-    for (int i = 0; i < rows; ++i)
-    {
-        for (int j = 0; j < cols; ++j)
-        {
-            char cellState = grid[i][j];
-
-            // If the cell is alive, draw it
-            if (cellState == 'X')
-            {
-                painter.drawRect(j * cellSize, i * cellSize, cellSize, cellSize);
-            }
-        }
-    }
-
-}
 
 

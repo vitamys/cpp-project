@@ -33,8 +33,6 @@ public slots:
 protected:
     void paintEvent(QPaintEvent *event) override;
 
-private slots:
-    void updateGui();
 
 private:
     Ui::Widget *ui;
@@ -48,9 +46,6 @@ private:
     const size_t GUI_RATE_MS;
 
 
-    //std::shared_ptr<DataBuffer> m_lastData;
-    std::vector<std::vector<std::vector<std::vector<char>>>> lastData;
-    //TODO: implement observer pattern. save data in this buffer then display at frame rate ie paint
     void setData(std::vector<std::vector<char>> grid, int quadrant) override;
     void enableButtons(int qudrant) override;
 
