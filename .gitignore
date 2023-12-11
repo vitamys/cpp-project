@@ -1,8 +1,0 @@
-# cpp
-*.zip
-build-week*/
-test3/build-week3-Desktop-Debug/
-build-week3_v2-Desktop-Debug/
-*build*
-.vscode/
-

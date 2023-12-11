@@ -1,4 +1,0 @@
-/home/lerfme/Documents/cpp/test3/build-week3-Desktop-Debug/CMakeFiles/week3.dir
-/home/lerfme/Documents/cpp/test3/build-week3-Desktop-Debug/CMakeFiles/edit_cache.dir
-/home/lerfme/Documents/cpp/test3/build-week3-Desktop-Debug/CMakeFiles/rebuild_cache.dir
-/home/lerfme/Documents/cpp/test3/build-week3-Desktop-Debug/CMakeFiles/week3_autogen.dir
