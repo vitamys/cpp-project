@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>BFH.stylesheet</file>
-    </qresource>
-</RCC>

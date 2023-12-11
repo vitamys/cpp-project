@@ -1,3 +1,0 @@
-/home/lerfme/Documents/cpp/build-week3_v2-Desktop-Debug/CMakeFiles/week3_v2.dir
-/home/lerfme/Documents/cpp/build-week3_v2-Desktop-Debug/CMakeFiles/edit_cache.dir
-/home/lerfme/Documents/cpp/build-week3_v2-Desktop-Debug/CMakeFiles/rebuild_cache.dir
