@@ -17,10 +17,10 @@ the next generation.
 
 #### Rules 
 They work as following:
-● A live cell surrounded by fewer than two living cells dies, because of underpopulation.
-● A live cell surrounded by two or three living cells stays alive.
-● A live cell surrounded by more than three living cells dies, because of overpopulation.
-● A dead cell surrounded by exactly three living cells becomes alive, due to reproduction.​
+* A live cell surrounded by fewer than two living cells dies, because of underpopulation.
+* A live cell surrounded by two or three living cells stays alive.
+* A live cell surrounded by more than three living cells dies, because of overpopulation.
+* A dead cell surrounded by exactly three living cells becomes alive, due to reproduction.​
 
 To make the game more interesting, there will be different patterns of alive and dead
 cells, which can be chosen at the beginning of the game. These patterns will then
