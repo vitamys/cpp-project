@@ -1,9 +1,5 @@
 #include "RandomGame.h"
-#include <iostream>
-#include <cstdlib>
-#include <unistd.h>
-#include <algorithm>
-#include <QDebug>
+
 
 
 RandomGame::RandomGame(IGameOfLife *parent, int size):GameOfLife(parent, size){

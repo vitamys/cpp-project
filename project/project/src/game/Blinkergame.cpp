@@ -1,9 +1,5 @@
 #include "BlinkerGame.h"
-#include <iostream>
-#include <cstdlib>
-#include <unistd.h>
-#include <algorithm>
-#include <QDebug>
+
 
 
 BlinkerGame::BlinkerGame(IGameOfLife *parent, const std::vector<std::vector<char>>& initialPattern, int size):GameOfLife(parent,initialPattern, size){

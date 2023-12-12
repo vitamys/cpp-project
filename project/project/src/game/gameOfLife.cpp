@@ -3,17 +3,14 @@
 #include <cstdlib>
 #include <unistd.h>
 #include <algorithm>
-#include <QDebug>
 
 
 GameOfLife::GameOfLife(IGameOfLife *parent,int size) : rows(size), cols(size), generation(0), m_widget(parent)  {
     // Initialize the grid with random values
     grid.resize(rows, std::vector<char>(cols, '.'));
     randomizeGrid();
-    qDebug() << "thread" << QObject::thread();
 
     this->moveToThread(&workerThread);
-    qDebug() << "thread after"<< QObject::thread();
 
     connect(&workerThread, &QThread::started, this, &GameOfLife::process);
     connect(&workerThread, &QThread::finished, this, &GameOfLife::clear);
@@ -34,10 +31,8 @@ GameOfLife::GameOfLife(IGameOfLife *parent,const std::vector<std::vector<char>>&
                 grid[startRow + i][startCol + j] = initialPattern[i][j];
             }
         }
-        qDebug() << "thread" << QObject::thread();
 
         this->moveToThread(&workerThread);
-        qDebug() << "thread after"<< QObject::thread();
 
         connect(&workerThread, &QThread::started, this, &GameOfLife::process);
         connect(&workerThread, &QThread::finished, this, &GameOfLife::clear);

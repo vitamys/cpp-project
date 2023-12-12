@@ -28,7 +28,7 @@ src/game/gameOfLife.h src/game/gameOfLife.cpp
 src/game/pattern.h
 src/game/gamefactory.h src/game/gamefactory.cpp
 src/game/Blinkergame.cpp src/game/BlinkerGame.h
-src/ui/quadraticWidget.h src/ui/quadraticWidget.cpp
+src/ui/quadraticWidget.h
 src/game/iGameOfLife.h
 src/game/SpaceshipGame.cpp src/game/SpaceshipGame.h
 src/game/RandomGame.h src/game/RandomGame.cpp

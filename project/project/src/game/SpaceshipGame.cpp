@@ -1,9 +1,5 @@
 #include "SpaceshipGame.h"
-#include <iostream>
-#include <cstdlib>
-#include <unistd.h>
-#include <algorithm>
-#include <QDebug>
+
 
 
 SpaceshipGame::SpaceshipGame(IGameOfLife *parent, const std::vector<std::vector<char>>& initialPattern, int size):GameOfLife(parent,initialPattern, size){

@@ -1,9 +1,5 @@
 #include "StaticGame.h"
-#include <iostream>
-#include <cstdlib>
-#include <unistd.h>
-#include <algorithm>
-#include <QDebug>
+
 
 StaticGame::StaticGame(IGameOfLife *parent, const std::vector<std::vector<char>>& initialPattern, int size):GameOfLife(parent,initialPattern, size){
     rgb.push_back(255); //r value

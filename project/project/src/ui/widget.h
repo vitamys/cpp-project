@@ -41,16 +41,9 @@ private:
     std::unique_ptr<GameOfLife> gameBottomLeft;
     std::unique_ptr<GameOfLife> gameBottomRight;
 
-    std::unique_ptr<QTimer> m_guiUpdateTimer;
-
-    const size_t GUI_RATE_MS;
-
-
     void setData(std::vector<std::vector<char>> grid, int quadrant) override;
     void enableButtons(int qudrant) override;
 
-
-    void initializeGames();
     void updateGames(std::vector<std::vector<char>> grid);
     void drawGrid(QPainter& painter, const std::vector<std::vector<char> > &grid) ;
 };

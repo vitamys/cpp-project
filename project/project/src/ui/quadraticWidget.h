@@ -11,11 +11,10 @@ public:
 
 protected:
     void resizeEvent(QResizeEvent* event) override {
-        // Ensure that the widget is always quadratic
+        // Enforcwe quadratic widget
         int size = qMin(event->size().width(), event->size().height());
         resize(size, size);
 
-        // Call the base class implementation
         QWidget::resizeEvent(event);
     }
 };

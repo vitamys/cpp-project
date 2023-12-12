@@ -12,8 +12,7 @@ using namespace std;
 
 Widget::Widget(QWidget *parent) :
     QuadraticWidget(parent),
-    ui(new Ui::Widget),
-    GUI_RATE_MS(150)
+    ui(new Ui::Widget)
 
 {
     ui->setupUi(this);
@@ -97,7 +96,6 @@ void Widget::startGame(int quadrant, QString patternname){
 
 }
 void Widget::disableAllButtons(int quadrant) {
-    qDebug() << "called methods disabelbuttons";
     QString suffix = "_" + QString::number(quadrant);
 
     QList<QPushButton *> buttons = findChildren<QPushButton *>(QRegularExpression(suffix+"$"));
@@ -109,7 +107,6 @@ void Widget::disableAllButtons(int quadrant) {
 
 
 void Widget::enableButtons(int quadrant) {
-    qDebug() << "called method enable";
     QString suffix = "_" + QString::number(quadrant);
 
     QList<QPushButton *> buttons = findChildren<QPushButton *>(QRegularExpression(suffix+"$"));
