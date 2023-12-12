@@ -27,8 +27,8 @@ GameOfLife::GameOfLife(IGameOfLife *parent,const std::vector<std::vector<char>>&
         int startRow = (rows - initialPattern.size()) / 2;
         int startCol = (cols - initialPattern[0].size()) / 2;
 
-        for (int i = 0; i < initialPattern.size(); ++i) {
-            for (int j = 0; j < initialPattern[i].size(); ++j) {
+        for (size_t i = 0; i < initialPattern.size(); ++i) {
+            for (size_t j = 0; j < initialPattern[i].size(); ++j) {
                 grid[startRow + i][startCol + j] = initialPattern[i][j];
             }
         }
