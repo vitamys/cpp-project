@@ -1,5 +1,9 @@
 #include "RandomGame.h"
-
+#include <iostream>
+#include <cstdlib>
+#include <unistd.h>
+#include <algorithm>
+#include <QDebug>
 
 
 RandomGame::RandomGame(IGameOfLife *parent, int size):GameOfLife(parent, size){
@@ -11,7 +15,7 @@ RandomGame::RandomGame(IGameOfLife *parent, int size):GameOfLife(parent, size){
 }
 
 
-void RandomGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight) const{
+void RandomGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight, std::vector<std::vector<char>> grid) const{
 
     QColor color(rgb[0], rgb[1], rgb[2]);
 
@@ -26,18 +30,19 @@ void RandomGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeig
     // Calculate cell size based on the dimensions of the quadrant and the grid size
     int cellSize = std::min(quadrantWidth / cols, quadrantHeight / rows);
 
-    if(!isGridEmpty()){
+    // Set up the pen for grid lines
     QPen gridPen(Qt::gray);
     gridPen.setStyle(Qt::DashLine);
     painter.setPen(gridPen);
 
+    // Draw grid lines
     for (int x = 0; x < quadrantWidth; x += cellSize) {
         painter.drawLine(x, 0, x, quadrantHeight);
     }
     for (int y = 0; y < quadrantHeight; y += cellSize) {
         painter.drawLine(0, y, quadrantWidth, y);
     }
-    }
+
 
     for (int i = 0; i < rows; ++i)
     {
@@ -45,6 +50,7 @@ void RandomGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeig
         {
             char cellState = grid[i][j];
 
+            // If the cell is alive, draw it
             if (cellState == 'X')
             {
                 painter.drawRect(j * cellSize, i * cellSize, cellSize, cellSize);

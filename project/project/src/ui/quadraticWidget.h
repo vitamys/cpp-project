@@ -11,7 +11,7 @@ public:
 
 protected:
     void resizeEvent(QResizeEvent* event) override {
-        // Enforcwe quadratic widget
+        // Enforce quadratic widget
         int size = qMin(event->size().width(), event->size().height());
         resize(size, size);
 

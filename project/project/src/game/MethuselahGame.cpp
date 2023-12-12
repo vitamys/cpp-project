@@ -12,7 +12,7 @@ MethuselahGame::MethuselahGame(IGameOfLife *parent, const std::vector<std::vecto
 
 
 
-void MethuselahGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight) const{
+void MethuselahGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight, std::vector<std::vector<char>> grid) const{
 
     QColor color(rgb[0], rgb[1], rgb[2]);
 
@@ -26,18 +26,19 @@ void MethuselahGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrant
 
     // Calculate cell size based on the dimensions of the quadrant and the grid size
     int cellSize = std::min(quadrantWidth / cols, quadrantHeight / rows);
-    if(!isGridEmpty()){
+        // Set up the pen for grid lines
         QPen gridPen(Qt::gray);
         gridPen.setStyle(Qt::DashLine);
         painter.setPen(gridPen);
 
+        // Draw grid lines
         for (int x = 0; x < quadrantWidth; x += cellSize) {
             painter.drawLine(x, 0, x, quadrantHeight);
         }
         for (int y = 0; y < quadrantHeight; y += cellSize) {
             painter.drawLine(0, y, quadrantWidth, y);
         }
-    }
+
 
     for (int i = 0; i < rows; ++i)
     {
@@ -45,6 +46,7 @@ void MethuselahGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrant
         {
             char cellState = grid[i][j];
 
+            // If the cell is alive, draw it
             if (cellState == 'X')
             {
                 painter.drawRect(j * cellSize, i * cellSize, cellSize, cellSize);

@@ -14,14 +14,15 @@ public:
     explicit GameOfLife(IGameOfLife *parent, const std::vector<std::vector<char>>& initialPattern, int size);
     virtual ~GameOfLife();
 
+    void printGrid() const;
     void updateGrid();
     bool isGridEmpty() const;
+    const std::vector<std::vector<char>>& getGrid() const;
     void clear();
     void setQuadrant(int quadrant);
-    virtual void drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight) const =0;
+    virtual void drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight, std::vector<std::vector<char>> grid) const =0;
     void setData(std::vector<std::vector<char>> grid, int quadrant) override;
     void enableButtons(int quadrant) override;
-    void drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight, std::vector<std::vector<char>> grid) const ;
 
 
 
@@ -34,8 +35,8 @@ protected:
 public:
     int generation;
 protected:
-    int cols;
     int rows;
+    int cols;
     std::vector<std::vector<char>> grid;
     int quadrant;
 

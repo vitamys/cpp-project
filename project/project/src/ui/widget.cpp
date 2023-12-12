@@ -12,8 +12,9 @@ using namespace std;
 
 Widget::Widget(QWidget *parent) :
     QuadraticWidget(parent),
-    ui(new Ui::Widget)
-
+    ui(new Ui::Widget),
+    GUI_RATE_MS(150),
+    lastData(4)
 {
     ui->setupUi(this);
 
@@ -30,6 +31,11 @@ Widget::Widget(QWidget *parent) :
         connect(button, &QPushButton::clicked, this, &Widget::startGameWithPattern);
     }
 
+
+    // Update GUI-timer to update images etc. every x ms
+    m_guiUpdateTimer.reset( new QTimer(this));
+    connect( m_guiUpdateTimer.get(), SIGNAL(timeout()), this, SLOT(updateGui()) );
+    m_guiUpdateTimer->start(GUI_RATE_MS);
 }
 
 Widget::~Widget()
@@ -40,9 +46,21 @@ Widget::~Widget()
 }
 
 void Widget::setData(std::vector<std::vector<char>> grid, int quadrant){
+    //TODO: append Data of grid to some buffer or other data structure
+    lastData[quadrant-1].push_back(grid);
+    qDebug() << lastData[quadrant-1].size();
+//    this->update();
+//    QApplication::processEvents();
+}
+// Called by GUI-timer
+void Widget::updateGui()
+{
+    if( !lastData.empty() ) //check for data in buffer here. move draw function back to here? what about factory method then?
+    {
+        this-> update(); //this will call the draw function
+        QApplication::processEvents();
 
-    this->update();
-    QApplication::processEvents();
+    }
 }
 
 
@@ -96,6 +114,7 @@ void Widget::startGame(int quadrant, QString patternname){
 
 }
 void Widget::disableAllButtons(int quadrant) {
+    qDebug() << "called methods disabelbuttons";
     QString suffix = "_" + QString::number(quadrant);
 
     QList<QPushButton *> buttons = findChildren<QPushButton *>(QRegularExpression(suffix+"$"));
@@ -107,6 +126,7 @@ void Widget::disableAllButtons(int quadrant) {
 
 
 void Widget::enableButtons(int quadrant) {
+    qDebug() << "called method enable";
     QString suffix = "_" + QString::number(quadrant);
 
     QList<QPushButton *> buttons = findChildren<QPushButton *>(QRegularExpression(suffix+"$"));
@@ -127,28 +147,103 @@ void Widget::paintEvent(QPaintEvent *event)
     int height = this->height() / 2;
     painter.fillRect(rect(), Qt::black);
 
+    //check which quadrant has to be drawn:
+    //painter.setViewport(0, 0, 2*width, 2*height);
+    if (!lastData.empty()) {
+        for (size_t i = 0; i < lastData.size(); ++i) {
+            if (!lastData[i].empty()) {
+                std::vector<std::vector<char>> grid = lastData[i].front();
+                // Based on the index, call the appropriate draw function
+                switch (i) {
+                    case 0:
+                        painter.setViewport(0, 0, 2*width, 2*height);
+                        drawGrid(painter, width, height, grid);
+                        break;
+                    case 1:
+                        painter.setViewport(width, 0, 2*width, 2*height);
+                        drawGrid(painter, width, height, grid);
+                        break;
+                    case 2:
+                        painter.setViewport(0, height, 2*width, 2*height);
+                        drawGrid(painter, width, height, grid);
+                        break;
+                    case 3:
+                        painter.setViewport(width, height, 2*width, 2*height);
+                        drawGrid(painter, width, height, grid);
+                        break;
+                }
+                lastData[i].erase(lastData[i].begin());
+            }
+            else{
+                enableButtons(i+1);
+            }
+        }
+    }
 
 
     // Draw each quadrant
-    painter.setViewport(0, 0, 2*width, 2*height);
-    if(gameTopLeft != nullptr){ // this method is called before game is selected, so check first
-        gameTopLeft->drawGrid(painter, width, height);
+//    painter.setViewport(0, 0, 2*width, 2*height);
+//    if(gameTopLeft != nullptr){ // this method is called before game is selected, so check first
+//        gameTopLeft->drawGrid(painter, width, height);
 
-    }
+//    }
 
-    painter.setViewport(width, 0, 2*width, 2*height);
-    if(gameTopRight != nullptr){ // this method is called before game is selected, so check first
-        gameTopRight->drawGrid(painter, width, height);
+//    painter.setViewport(width, 0, 2*width, 2*height);
+//    if(gameTopRight != nullptr){ // this method is called before game is selected, so check first
+//        gameTopRight->drawGrid(painter, width, height);
 
-    }
+//    }
 
-    painter.setViewport(0, height, 2*width, 2*height);
-    if(gameBottomLeft != nullptr){
-        gameBottomLeft->drawGrid(painter, width, height);
-    }
+//    painter.setViewport(0, height, 2*width, 2*height);
+//    if(gameBottomLeft != nullptr){
+//        gameBottomLeft->drawGrid(painter, width, height);
+//    }
 
-    painter.setViewport(width, height, 2*width, 2*height);
-    if (gameBottomRight != nullptr){
-        gameBottomRight->drawGrid(painter, width, height);
-    }
+//    painter.setViewport(width, height, 2*width, 2*height);
+//    if (gameBottomRight != nullptr){
+//        gameBottomRight->drawGrid(painter, width, height);
+//    }
 }
+void Widget::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight, std::vector<std::vector<char>> grid) const{
+
+    //QColor color(rgb[0], rgb[1], rgb[2]);
+
+    QPen cellPen(Qt::white);
+    cellPen.setWidth(2);
+    QBrush cellBrush(Qt::white, Qt::SolidPattern);
+
+
+    painter.setPen(cellPen);
+    painter.setBrush(cellBrush);
+
+    // Calculate cell size based on the dimensions of the quadrant and the grid size
+    int cellSize = std::min(quadrantWidth / 10, quadrantHeight / 10);
+        // Set up the pen for grid lines
+        QPen gridPen(Qt::gray);
+        gridPen.setStyle(Qt::DashLine);
+        painter.setPen(gridPen);
+
+        // Draw grid lines
+        for (int x = 0; x < quadrantWidth; x += cellSize) {
+            painter.drawLine(x, 0, x, quadrantHeight);
+        }
+        for (int y = 0; y < quadrantHeight; y += cellSize) {
+            painter.drawLine(0, y, quadrantWidth, y);
+        }
+
+    for (int i = 0; i < 10; ++i)
+    {
+        for (int j = 0; j < 10; ++j)
+        {
+            char cellState = grid[i][j];
+
+            // If the cell is alive, draw it
+            if (cellState == 'X')
+            {
+                painter.drawRect(j * cellSize, i * cellSize, cellSize, cellSize);
+            }
+        }
+    }
+
+}
+

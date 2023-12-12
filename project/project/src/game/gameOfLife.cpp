@@ -3,14 +3,18 @@
 #include <cstdlib>
 #include <unistd.h>
 #include <algorithm>
+#include <QDebug>
 
 
 GameOfLife::GameOfLife(IGameOfLife *parent,int size) : rows(size), cols(size), generation(0), m_widget(parent)  {
     // Initialize the grid with random values
     grid.resize(rows, std::vector<char>(cols, '.'));
     randomizeGrid();
+    qDebug() << "thread" << QObject::thread();
 
     this->moveToThread(&workerThread);
+    // Connect the thread's started signal to the process method
+    qDebug() << "thread after"<< QObject::thread();
 
     connect(&workerThread, &QThread::started, this, &GameOfLife::process);
     connect(&workerThread, &QThread::finished, this, &GameOfLife::clear);
@@ -31,8 +35,11 @@ GameOfLife::GameOfLife(IGameOfLife *parent,const std::vector<std::vector<char>>&
                 grid[startRow + i][startCol + j] = initialPattern[i][j];
             }
         }
+        qDebug() << "thread" << QObject::thread();
 
         this->moveToThread(&workerThread);
+        // Connect the thread's started signal to the process method
+        qDebug() << "thread after"<< QObject::thread();
 
         connect(&workerThread, &QThread::started, this, &GameOfLife::process);
         connect(&workerThread, &QThread::finished, this, &GameOfLife::clear);
@@ -64,7 +71,16 @@ void GameOfLife::randomizeGrid() {
 }
 
 
-
+void GameOfLife::printGrid() const {
+    // Print the current state of the grid
+    std::cout << "Generation: " << generation << std::endl;
+    for (const auto &row : grid) {
+        for (char cell : row) {
+            std::cout << cell;
+        }
+        std::cout << std::endl;
+    }
+}
 
 void GameOfLife::updateGrid() {
     // Update the grid based on the rules of the Game of Life
@@ -119,6 +135,9 @@ bool GameOfLife::isGridEmpty() const {
         });
 }
 
+const std::vector<std::vector<char>>& GameOfLife::getGrid() const {
+       return grid;
+   }
 
 void GameOfLife::clear(){
     for_each(grid.begin(), grid.end(), [](std::vector<char>& row) {
@@ -134,13 +153,13 @@ void GameOfLife::process(){
 
         this->updateGrid();
         m_widget->setData(this->grid, this->quadrant);
-        QThread::usleep(100000);// Sleep for 100 milliseconds
+        //QThread::usleep(100000);// Sleep for 100 milliseconds
     }
     this->clear();
-    m_widget->setData(this->grid, this->quadrant);
-    m_widget->enableButtons(this->quadrant);
+    //m_widget->enableButtons(this->quadrant);
 
 }
+
 
 
 

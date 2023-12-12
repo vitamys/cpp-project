@@ -11,7 +11,7 @@ class RandomGame : public GameOfLife
 public:
     RandomGame(IGameOfLife *parent, int size);
 
-    void drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight) const override;
+    void drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight, std::vector<std::vector<char>> grid) const override;
 
 private:
     std::vector<int> rgb;

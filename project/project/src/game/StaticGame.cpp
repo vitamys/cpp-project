@@ -1,5 +1,9 @@
 #include "StaticGame.h"
-
+#include <iostream>
+#include <cstdlib>
+#include <unistd.h>
+#include <algorithm>
+#include <QDebug>
 
 StaticGame::StaticGame(IGameOfLife *parent, const std::vector<std::vector<char>>& initialPattern, int size):GameOfLife(parent,initialPattern, size){
     rgb.push_back(255); //r value
@@ -13,7 +17,7 @@ StaticGame::StaticGame(IGameOfLife *parent, const std::vector<std::vector<char>>
 
 
 
-void StaticGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight) const{
+void StaticGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight, std::vector<std::vector<char>> grid) const{
 
     QColor color(rgb[0], rgb[1], rgb[2]);
 
@@ -28,23 +32,25 @@ void StaticGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeig
     // Calculate cell size based on the dimensions of the quadrant and the grid size
     int cellSize = std::min(quadrantWidth / cols, quadrantHeight / rows);
 
+    // Set up the pen for grid lines
     QPen gridPen(Qt::gray);
     gridPen.setStyle(Qt::DashLine);
     painter.setPen(gridPen);
-    if(!isGridEmpty()){
+        // Draw grid lines
         for (int x = 0; x < quadrantWidth; x += cellSize) {
             painter.drawLine(x, 0, x, quadrantHeight);
         }
         for (int y = 0; y < quadrantHeight; y += cellSize) {
             painter.drawLine(0, y, quadrantWidth, y);
         }
-    }
+
     for (int i = 0; i < rows; ++i)
     {
         for (int j = 0; j < cols; ++j)
         {
             char cellState = grid[i][j];
 
+            // If the cell is alive, draw it
             if (cellState == 'X')
             {
                 painter.drawRect(j * cellSize, i * cellSize, cellSize, cellSize);
