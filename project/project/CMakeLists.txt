@@ -26,9 +26,16 @@ set(CMAKE_BUILD_TYPE "Debug")
 add_executable(${PROJECT_NAME} src/main.cpp src/ui/widget.h src/ui/widget.cpp src/ui/widget.ui
 src/game/gameOfLife.h src/game/gameOfLife.cpp
 src/game/pattern.h
-    )
+src/game/gamefactory.h src/game/gamefactory.cpp
+src/game/Blinkergame.cpp src/game/BlinkerGame.h
+src/ui/quadraticWidget.h
+src/game/iGameOfLife.h
+src/game/SpaceshipGame.cpp src/game/SpaceshipGame.h
+src/game/RandomGame.h src/game/RandomGame.cpp
+src/game/StaticGame.h src/game/StaticGame.cpp
+src/game/MethuselahGame.h src/game/MethuselahGame.cpp)
 
-target_include_directories(${PROJECT_NAME} PRIVATE src src/ui src/game src/ui/cinder)
+target_include_directories(${PROJECT_NAME} PRIVATE src src/ui src/game )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets Qt5::PrintSupport)
 

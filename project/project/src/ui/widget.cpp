@@ -1,132 +1,154 @@
 #include "widget.h"
 #include "ui_widget.h"
-#include "gameOfLife.h"
+#include "BlinkerGame.h"
 #include "pattern.h"
+#include "gamefactory.h"
 #include <unistd.h>  // for sleep function
-
+#include <QTimer>
+#include <QDebug>
+#include <QRegularExpression>
 
 using namespace std;
 
 Widget::Widget(QWidget *parent) :
-    QWidget(parent),
+    QuadraticWidget(parent),
     ui(new Ui::Widget)
+
 {
     ui->setupUi(this);
 
-    connect(ui->beaconButton, &QPushButton::clicked, this, [=]() {
-        startGameWithPattern();
-    });
+    resize(800, 800);
+    QGridLayout* layout =ui->gridLayout;
+    this->setLayout(layout);
 
-    connect(ui->gliderButton, &QPushButton::clicked, this, [=]() {
-        startGameWithPattern();
-    });
+
+    // Find all child buttons of the widget
+    QList<QPushButton*> allButtons = this->findChildren<QPushButton*>();
+
+    // Connect all buttons to the startGameWithPattern method
+    for (QPushButton* button : allButtons) {
+        connect(button, &QPushButton::clicked, this, &Widget::startGameWithPattern);
+    }
+
 }
 
 Widget::~Widget()
 {
+
     delete ui;
+
 }
+
+void Widget::setData(std::vector<std::vector<char>> grid, int quadrant){
+
+    this->update();
+    QApplication::processEvents();
+}
+
+
 
 void Widget::startGameWithPattern() {
     QPushButton* clickedButton = qobject_cast<QPushButton*>(sender());
     if (clickedButton) {
-        disableAllButtons();
 
-        QLabel* outputLabel = ui->gridLabel;
-        startGame(Patterns::patternByName(clickedButton->objectName()), outputLabel);
+        QString buttonname= clickedButton->objectName();
+        QStringList parts = buttonname.split("_");
+        QString patternname= parts[0];
+        int quadrant = parts[1].toInt();
 
-        enableAllButtons();
+        // Output the parts
+        for (const QString& part : parts) {
+            qDebug() << part;
+        }
+
+        disableAllButtons(quadrant);
+
+
+
+        startGame(quadrant, patternname);
+
     }
 }
 
-void Widget::startGame(const std::vector<std::vector<char>>& pattern, QLabel* outputLabel){
-    // Use either the default constructor for a random initial state
-    //GameOfLife game(pattern,10);
-    game = std::make_unique<GameOfLife>(pattern, 20);
+void Widget::startGame(int quadrant, QString patternname){
+    unique_ptr<GameFactory> gameFactory = unique_ptr<GameFactory>(new GameFactory());
 
-    // Or use the constructor with a filename to load a pattern from a text file
-    //GameOfLife game("beacon.txt", 10);
+    //set the quadrant in each game to know where game is later on
+    switch(quadrant){
+    case 1: gameTopLeft = unique_ptr<GameOfLife>(gameFactory->getGame(this,patternname));
+        gameTopLeft->setQuadrant(1);
+        break;
+    case 2: gameTopRight = unique_ptr<GameOfLife>(gameFactory->getGame(this,patternname));
+        gameTopRight->setQuadrant(2);
 
-    const int maxGenerations = 50;
+        break;
 
-//    while (!game.isGridEmpty() && game.generation < maxGenerations) {
-//        game.printGrid();
-//        game.updateGrid();
-//        usleep(100000); // Sleep for 100 milliseconds (adjust as needed)
-//    }
-    while ( game->generation < maxGenerations && !game->isGridEmpty()) {
-            // Update the QLabel with the current grid state
-//            QString gridText;
-//            for (const auto& row : game->getGrid()) {
-//                for (char cell : row) {
-//                    gridText += QString(cell);
-//                }
-//                gridText += "\n";
-//            }
-//            outputLabel->setText(gridText);
+    case 3: gameBottomLeft = unique_ptr<GameOfLife>(gameFactory->getGame(this,patternname));
+        gameBottomLeft->setQuadrant(3);
 
-            this->update();
-            QApplication::processEvents();  // Allow processing of events to update the UI
-            usleep(100000);  // Sleep for 100 milliseconds (adjust as needed)
-            game->updateGrid();
-        }
-        game->clear();
-        // Clear the label once the game finishes
-        outputLabel->clear();
+        break;
+    case 4: gameBottomRight = unique_ptr<GameOfLife>(gameFactory->getGame(this,patternname));
+        gameBottomRight->setQuadrant(4);
+
+        break;
+    }
+
+
 }
-void Widget::disableAllButtons() {
-    ui->beaconButton->setVisible(false);
-    ui->gliderButton->setVisible(false);
+void Widget::disableAllButtons(int quadrant) {
+    QString suffix = "_" + QString::number(quadrant);
+
+    QList<QPushButton *> buttons = findChildren<QPushButton *>(QRegularExpression(suffix+"$"));
+    std::for_each(buttons.begin(), buttons.end(), [](QPushButton* button) {
+        button->setVisible(false);
+    });
+
 }
 
-void Widget::enableAllButtons() {
-    ui->beaconButton->setVisible(true);
-    ui->gliderButton->setVisible(true);
-}
 
-void Widget::paintEvent(QPaintEvent *event) {
-    // Create a QPainter and set up the pen and brush for drawing
+void Widget::enableButtons(int quadrant) {
+    QString suffix = "_" + QString::number(quadrant);
+
+    QList<QPushButton *> buttons = findChildren<QPushButton *>(QRegularExpression(suffix+"$"));
+    std::for_each(buttons.begin(), buttons.end(), [](QPushButton* button) {
+        button->setVisible(true);
+    });
+
+
+}
+void Widget::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event);
+
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
 
-    // Set background color
+    int width = this->width() / 2;
+    int height = this->height() / 2;
     painter.fillRect(rect(), Qt::black);
 
-    // Set up the pen for grid lines (optional)
-    QPen gridPen(Qt::gray);
-    gridPen.setStyle(Qt::DashLine);
-    painter.setPen(gridPen);
 
-    // Draw grid lines (optional)
-    int cellSize = 20; // Adjust the size of each cell
-//    for (int x = 0; x < width(); x += cellSize) {
-//        painter.drawLine(x, 0, x, height());
-//    }
-//    for (int y = 0; y < height(); y += cellSize) {
-//        painter.drawLine(0, y, width(), y);
-//    }
 
-    // Set up the pen and brush for drawing cells
-    QPen cellPen(Qt::white);
-    cellPen.setWidth(10);
-    QBrush cellBrush(Qt::white, Qt::SolidPattern);
+    // Draw each quadrant
+    painter.setViewport(0, 0, 2*width, 2*height);
+    if(gameTopLeft != nullptr){ // this method is called before game is selected, so check first
+        gameTopLeft->drawGrid(painter, width, height);
 
-    painter.setPen(cellPen);
-    painter.setBrush(cellBrush);
+    }
 
-    // Access your Game of Life data and draw the cells
-    if (game) {
-        const auto& grid = game->getGrid();
-                for (size_t row = 0; row < grid.size(); ++row) {
-                    for (size_t col = 0; col < grid[row].size(); ++col) {
-                        // Check the state of the cell
-                        char cellState = grid[row][col];  // Assuming '0' for dead and '1' for alive
+    painter.setViewport(width, 0, 2*width, 2*height);
+    if(gameTopRight != nullptr){ // this method is called before game is selected, so check first
+        gameTopRight->drawGrid(painter, width, height);
 
-                        // If the cell is alive, draw it
-                        if (cellState == 'X') {
-                            painter.drawRect(col * cellSize, row * cellSize, cellSize, cellSize);
-                        }
-                    }
-                }
+    }
+
+    painter.setViewport(0, height, 2*width, 2*height);
+    if(gameBottomLeft != nullptr){
+        gameBottomLeft->drawGrid(painter, width, height);
+    }
+
+    painter.setViewport(width, height, 2*width, 2*height);
+    if (gameBottomRight != nullptr){
+        gameBottomRight->drawGrid(painter, width, height);
     }
 }
