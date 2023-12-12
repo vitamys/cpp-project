@@ -49,8 +49,7 @@ void Widget::setData(std::vector<std::vector<char>> grid, int quadrant){
     //TODO: append Data of grid to some buffer or other data structure
     lastData[quadrant-1].push_back(grid);
     qDebug() << lastData[quadrant-1].size();
-//    this->update();
-//    QApplication::processEvents();
+
 }
 // Called by GUI-timer
 void Widget::updateGui()
@@ -155,22 +154,22 @@ void Widget::paintEvent(QPaintEvent *event)
                 std::vector<std::vector<char>> grid = lastData[i].front();
                 // Based on the index, call the appropriate draw function
                 switch (i) {
-                    case 0:
-                        painter.setViewport(0, 0, 2*width, 2*height);
-                        drawGrid(painter, width, height, grid);
-                        break;
-                    case 1:
-                        painter.setViewport(width, 0, 2*width, 2*height);
-                        drawGrid(painter, width, height, grid);
-                        break;
-                    case 2:
-                        painter.setViewport(0, height, 2*width, 2*height);
-                        drawGrid(painter, width, height, grid);
-                        break;
-                    case 3:
-                        painter.setViewport(width, height, 2*width, 2*height);
-                        drawGrid(painter, width, height, grid);
-                        break;
+                case 0:
+                    painter.setViewport(0, 0, 2*width, 2*height);
+                    drawGrid(painter, width, height, grid);
+                    break;
+                case 1:
+                    painter.setViewport(width, 0, 2*width, 2*height);
+                    drawGrid(painter, width, height, grid);
+                    break;
+                case 2:
+                    painter.setViewport(0, height, 2*width, 2*height);
+                    drawGrid(painter, width, height, grid);
+                    break;
+                case 3:
+                    painter.setViewport(width, height, 2*width, 2*height);
+                    drawGrid(painter, width, height, grid);
+                    break;
                 }
                 lastData[i].erase(lastData[i].begin());
             }
@@ -181,28 +180,6 @@ void Widget::paintEvent(QPaintEvent *event)
     }
 
 
-    // Draw each quadrant
-//    painter.setViewport(0, 0, 2*width, 2*height);
-//    if(gameTopLeft != nullptr){ // this method is called before game is selected, so check first
-//        gameTopLeft->drawGrid(painter, width, height);
-
-//    }
-
-//    painter.setViewport(width, 0, 2*width, 2*height);
-//    if(gameTopRight != nullptr){ // this method is called before game is selected, so check first
-//        gameTopRight->drawGrid(painter, width, height);
-
-//    }
-
-//    painter.setViewport(0, height, 2*width, 2*height);
-//    if(gameBottomLeft != nullptr){
-//        gameBottomLeft->drawGrid(painter, width, height);
-//    }
-
-//    painter.setViewport(width, height, 2*width, 2*height);
-//    if (gameBottomRight != nullptr){
-//        gameBottomRight->drawGrid(painter, width, height);
-//    }
 }
 void Widget::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight, std::vector<std::vector<char>> grid) const{
 
@@ -218,18 +195,16 @@ void Widget::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight, 
 
     // Calculate cell size based on the dimensions of the quadrant and the grid size
     int cellSize = std::min(quadrantWidth / 10, quadrantHeight / 10);
-        // Set up the pen for grid lines
-        QPen gridPen(Qt::gray);
-        gridPen.setStyle(Qt::DashLine);
-        painter.setPen(gridPen);
+    QPen gridPen(Qt::gray);
+    gridPen.setStyle(Qt::DashLine);
+    painter.setPen(gridPen);
 
-        // Draw grid lines
-        for (int x = 0; x < quadrantWidth; x += cellSize) {
-            painter.drawLine(x, 0, x, quadrantHeight);
-        }
-        for (int y = 0; y < quadrantHeight; y += cellSize) {
-            painter.drawLine(0, y, quadrantWidth, y);
-        }
+    for (int x = 0; x < quadrantWidth; x += cellSize) {
+        painter.drawLine(x, 0, x, quadrantHeight);
+    }
+    for (int y = 0; y < quadrantHeight; y += cellSize) {
+        painter.drawLine(0, y, quadrantWidth, y);
+    }
 
     for (int i = 0; i < 10; ++i)
     {

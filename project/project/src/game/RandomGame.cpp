@@ -1,9 +1,5 @@
 #include "RandomGame.h"
-#include <iostream>
-#include <cstdlib>
-#include <unistd.h>
-#include <algorithm>
-#include <QDebug>
+
 
 
 RandomGame::RandomGame(IGameOfLife *parent, int size):GameOfLife(parent, size){
@@ -30,12 +26,10 @@ void RandomGame::drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeig
     // Calculate cell size based on the dimensions of the quadrant and the grid size
     int cellSize = std::min(quadrantWidth / cols, quadrantHeight / rows);
 
-    // Set up the pen for grid lines
     QPen gridPen(Qt::gray);
     gridPen.setStyle(Qt::DashLine);
     painter.setPen(gridPen);
 
-    // Draw grid lines
     for (int x = 0; x < quadrantWidth; x += cellSize) {
         painter.drawLine(x, 0, x, quadrantHeight);
     }

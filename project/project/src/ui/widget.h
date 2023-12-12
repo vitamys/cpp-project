@@ -55,7 +55,6 @@ private:
     void enableButtons(int qudrant) override;
 
 
-    void initializeGames();
     void updateGames(std::vector<std::vector<char>> grid);
     void drawGrid(QPainter& painter, int quadrantWidth, int quadrantHeight, std::vector<std::vector<char>> grid) const ;
 };
