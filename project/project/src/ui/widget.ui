@@ -96,7 +96,7 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QPushButton" name="diehardButton_4">
+       <widget class="QPushButton" name="wingButton_4">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -104,12 +104,12 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Diehard</string>
+         <string>Wing</string>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QPushButton" name="rpentominoButton_4">
+       <widget class="QPushButton" name="pipentominoButton_4">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -117,7 +117,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>R-pentomino</string>
+         <string>Pi-pentomino</string>
         </property>
        </widget>
       </item>
@@ -136,7 +136,7 @@
        </widget>
       </item>
       <item row="0" column="0">
-       <widget class="QPushButton" name="rpentominoButton_3">
+       <widget class="QPushButton" name="pipentominoButton_3">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -144,12 +144,12 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>R-pentomino</string>
+         <string>Pi-pentomino</string>
         </property>
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QPushButton" name="diehardButton_3">
+       <widget class="QPushButton" name="wingButton_3">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -157,7 +157,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Diehard</string>
+         <string>Wing</string>
         </property>
        </widget>
       </item>

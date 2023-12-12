@@ -13,11 +13,6 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-#TODO: Set the path to your Cinder directory
-set(CINDER_PATH ~/Cinder)
-include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
-
-
 # set build type to Debug/Release
 set(CMAKE_BUILD_TYPE "Debug")
 

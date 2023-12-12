@@ -10,7 +10,7 @@
 class GameOfLife : public QObject, public IGameOfLife {
     Q_OBJECT
 public:
-    explicit GameOfLife(IGameOfLife *parent, int size);
+    explicit GameOfLife(IGameOfLife *parent, int maxGenerations);
     explicit GameOfLife(IGameOfLife *parent, const std::vector<std::vector<char>>& initialPattern, int size);
     virtual ~GameOfLife();
 
@@ -34,10 +34,11 @@ protected:
 public:
     int generation;
 protected:
-    int cols;
     int rows;
+    int cols;
     std::vector<std::vector<char>> grid;
     int quadrant;
+    int maxGeneration;
 
     IGameOfLife* m_widget;
     QThread workerThread;

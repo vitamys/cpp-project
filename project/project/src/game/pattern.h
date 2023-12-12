@@ -38,10 +38,10 @@ public:
 
         } else if (name == "mwssButton") {
             return mwss();
-        }else if (name == "rpentominoButton") {
-            return rPentomino();
-        } else if (name == "diehardButton") {
-            return diehard();
+        }else if (name == "pipentominoButton") {
+            return piPentomino();
+        } else if (name == "wingButton") {
+            return wing();
         } else if (name == "acornButton") {
             return acorn();
         }else {
@@ -136,19 +136,20 @@ public:
     }
 
     //methuselas
-    static std::vector<std::vector<char>> rPentomino() {
+    static std::vector<std::vector<char>> piPentomino() {
         return {
-            {' ', 'X', 'X', },
-            {'X', 'X', ' '},
-            {' ', 'X', ' '},
+            {'X', 'X', 'X'},
+            {'X', ' ', 'X'},
+            {'X', ' ', 'X'},
         };
     }
 
-    static std::vector<std::vector<char>> diehard() {
+    static std::vector<std::vector<char>> wing() {
         return {
-            {' ', ' ', ' ', ' ', ' ', ' ', 'X', ' ', ' '},
-            {'X', 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-            {' ', 'X', ' ', ' ', ' ', 'X', 'X', 'X', ' '},
+            {' ', 'X', 'X', ' '},
+            {'X', ' ', ' ', 'X'},
+            {' ', 'X', ' ', 'X'},
+            {' ', ' ', 'X', 'X'},
         };
     }
 

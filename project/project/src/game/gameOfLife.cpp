@@ -3,9 +3,10 @@
 #include <cstdlib>
 #include <unistd.h>
 #include <algorithm>
+#include <QDebug>
 
 
-GameOfLife::GameOfLife(IGameOfLife *parent,int size) : rows(size), cols(size), generation(0), m_widget(parent)  {
+GameOfLife::GameOfLife(IGameOfLife *parent,int maxGeneration) : generation(0),rows(10), cols(10),  maxGeneration(maxGeneration), m_widget(parent)  {
     // Initialize the grid with random values
     grid.resize(rows, std::vector<char>(cols, '.'));
     randomizeGrid();
@@ -19,8 +20,8 @@ GameOfLife::GameOfLife(IGameOfLife *parent,int size) : rows(size), cols(size), g
 }
 
 
-GameOfLife::GameOfLife(IGameOfLife *parent,const std::vector<std::vector<char>>& initialPattern, int size)
-        : rows(size), cols(size), generation(0), grid(rows, std::vector<char>(cols, ' ')), m_widget(parent) {
+GameOfLife::GameOfLife(IGameOfLife *parent,const std::vector<std::vector<char>>& initialPattern, int maxGeneration)
+        : generation(0),rows(10), cols(10),   grid(rows, std::vector<char>(cols, ' ')),maxGeneration(maxGeneration), m_widget(parent) {
 
         // Place the initial pattern in the middle of the grid
         int startRow = (rows - initialPattern.size()) / 2;
@@ -31,6 +32,8 @@ GameOfLife::GameOfLife(IGameOfLife *parent,const std::vector<std::vector<char>>&
                 grid[startRow + i][startCol + j] = initialPattern[i][j];
             }
         }
+        qDebug()<< "this will run for"<< this->maxGeneration << "generations";
+
 
         this->moveToThread(&workerThread);
 
@@ -130,11 +133,11 @@ void GameOfLife::setQuadrant(int quadrant){
 }
 
 void GameOfLife::process(){
-    while ( this->generation < 50 && !this->isGridEmpty()) {
+    while ( this->generation < this->maxGeneration && !this->isGridEmpty()) {
 
         this->updateGrid();
         m_widget->setData(this->grid, this->quadrant);
-        QThread::usleep(100000);// Sleep for 100 milliseconds
+        QThread::usleep(100000);
     }
     this->clear();
     m_widget->setData(this->grid, this->quadrant);
