@@ -43,4 +43,5 @@ These patterns are similar to the Oscillators, they will also return to their in
 
 ##### Methuselahs
 These are moving patterns which evolve for a long period of generations before stabilizing themselves.
-![image](https://github.com/vitamys/cpp-project/assets/115620523/2f7f491f-31ea-4b46-bd13-1af9ee24fa9e)
+<img width="900" alt="image" src="https://github.com/vitamys/cpp-project/assets/115620523/ea1d3f7a-339f-42f0-b37e-48b051678535">
+
