@@ -59,11 +59,12 @@ void GameOfLife::enableButtons(int quadrant){
 
 void GameOfLife::randomizeGrid() {
     // Fill the grid with random live ('X') and dead ('.') cells
-    for (int i = 0; i < rows; ++i) {
-        for (int j = 0; j < cols; ++j) {
-            grid[i][j] = (rand() % 2 == 0) ? '.' : 'X';
+    auto randomChar = []() {
+            return (std::rand() % 2 == 0) ? '.' : 'X';
+        };
+    for (auto& row : grid) {
+            std::generate(row.begin(), row.end(), randomChar);
         }
-    }
 }
 
 
@@ -89,7 +90,7 @@ void GameOfLife::updateGrid() {
         }
     }
 
-    grid = newGrid;
+    std::swap(grid, newGrid);
     ++generation;
 }
 
@@ -124,9 +125,8 @@ bool GameOfLife::isGridEmpty() const {
 
 
 void GameOfLife::clear(){
-    for_each(grid.begin(), grid.end(), [](std::vector<char>& row) {
-        std::fill(row.begin(), row.end(), '.');
-    });
+    std::fill(grid.begin(), grid.end(), std::vector<char>(cols, '.'));
+
 }
 void GameOfLife::setQuadrant(int quadrant){
     this->quadrant=quadrant;
